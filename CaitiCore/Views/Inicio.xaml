@@ -1,0 +1,142 @@
+﻿<UserControl x:Class="CaitiCore.Views.Inicio"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CaitiCore.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Border>
+        <Border.Background>
+            <SolidColorBrush Color="#233EFF">
+            </SolidColorBrush>
+        </Border.Background>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="5"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="LOG IN"
+                           Foreground="white"
+                           FontSize="10"
+                           FontFamily="Montserrat"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Margin="10,0,0,0"/>
+
+            </Grid>
+            <Border BorderThickness="1"
+                    BorderBrush="White"
+                    Grid.Row="1" Margin="285,40,285,40">
+                <StackPanel
+                        HorizontalAlignment="Center"
+                        Grid.Row="1"
+                        Orientation="Vertical"
+                        Margin="0,35,0,0" Width="241">
+                    <TextBlock Text="Caiti"
+                           Foreground="White"
+                           FontSize="30"
+                           FontWeight="Medium"
+                           FontFamily="Montserrat"
+                           HorizontalAlignment="Center"/>
+                    <TextBlock Text="Bienvenido al sistema"
+                           Foreground="White"
+                           FontSize="15"
+                           FontWeight="Medium"
+                           FontFamily="Montserrat"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"
+                           Margin="0,5,0,0" Height="25" Width="210"/>
+                    <TextBlock Text="Usuario"
+                           Foreground="White"
+                           FontSize="13"
+                           FontWeight="Medium"
+                           FontFamily="Montserrat"
+                           TextAlignment="Center"
+                           Margin="0,35,0,0" Height="25" Width="210"/>
+                    <TextBox x:Name="txtUser"
+                         Text="{Binding NombreUsuario, UpdateSourceTrigger=PropertyChanged}"
+                         FontSize="13"
+                         FontWeight="Medium"
+                         FontFamily="Montserrat"                            
+                         Foreground="White"
+                         Background="#233EFF"
+                         CaretBrush="White"
+                         BorderBrush="DarkGray"
+                         BorderThickness="0,0,0,2"
+                         Height="28"
+                         VerticalContentAlignment="Center"
+                         Margin="0,5,0,0"
+                         Width="210"/>
+                    <Button x:Name="btnLogin"
+                        Command="{Binding ContinuarCommand}"
+                        BorderThickness="0"
+                        Content="Login"
+                        Foreground="White"
+                        FontSize="17"
+                        FontFamily="Montserrat"
+                        Cursor="Hand"                           
+                        Margin="0,40,0,0" Width="190">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#462AD8"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#28AEED"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Width="150" Height="40"
+                                    CornerRadius="20"
+                                    Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button x:Name="btnRegister"
+                        Command="{Binding RegistrarseCommand}"
+                        BorderThickness="0"
+                        Content="Register"
+                        Foreground="White"
+                        FontSize="17"
+                        FontFamily="Montserrat"
+                        Cursor="Hand"                           
+                        Margin="0,15,0,0" Width="190">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#462AD8"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#28AEED"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Width="150" Height="40"
+                                    CornerRadius="20"
+                                    Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

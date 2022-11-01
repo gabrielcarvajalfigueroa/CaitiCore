@@ -1,0 +1,46 @@
+﻿<Window x:Class="CaitiCore.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CaitiCore"
+        xmlns:views="clr-namespace:CaitiCore.Views"
+        xmlns:viewmodels="clr-namespace:CaitiCore.ViewModels"
+        WindowState="Maximized"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.Resources>
+            <!-- Estos data templates se usan para mapear las views-->
+            <DataTemplate DataType="{x:Type viewmodels:InicioViewModel}">
+                <views:Inicio/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:RegistroViewModel}">
+                <views:Registro/>
+            </DataTemplate>
+
+
+            <DataTemplate DataType="{x:Type viewmodels:MenuViewModel}">
+                <views:MenuView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:CursoViewModel}">
+                <views:CursoView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:PlanificacionViewModel}">
+                <views:Planificacion/>
+            </DataTemplate>
+
+
+
+
+        </Grid.Resources>
+
+        <ContentControl Content="{Binding CurrentViewModel}"/>
+
+
+
+    </Grid>
+</Window>

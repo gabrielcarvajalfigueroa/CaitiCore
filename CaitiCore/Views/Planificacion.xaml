@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="CaitiCore.Views.Planificacion"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CaitiCore.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <!--BOTONES VOLVER Y GUARDAR-->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="LightGoldenrodYellow">
+            <!--VOLVER-->
+            <Button
+                Command="{Binding Volver}"
+                Margin="10,0,20,0"
+                Content="Volver"
+                Cursor="Hand"/>
+            <!--GUARDAR-->
+            <Button
+                Command="{Binding Guardar}"
+                Margin="10,0,0,0"
+                Content="Guardar"
+                Cursor="Hand"/>
+            
+        </StackPanel>
+
+        <DataGrid Grid.Row="1" x:Name="dataGrid1" ItemsSource="{Binding ListaSemanas}"  AutoGenerateColumns="False" CanUserAddRows="false">
+
+            <DataGrid.Columns>
+                <!--COLUMNA SEMANA-->
+                <DataGridTemplateColumn Header="Semana">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ItemsControl ItemsSource="{Binding Id_Semana}" HorizontalAlignment="Center" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Informacion" Width="*">
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate>
+                            <DataGrid x:Name="dataGridInner" ItemsSource="{Binding Clases}"  AutoGenerateColumns="False"
+                                      CanUserAddRows="True" >
+                                <DataGrid.Columns>
+                                    <!--COLUMNA CLASE-->
+                                    <DataGridTextColumn  Header="Clase" Binding="{Binding Id_Clase}" Width="50" />
+
+                                    <!--COLUMNA ACTIVIDADES-->
+                                    <DataGridTemplateColumn Header="Actividades" Width="500">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Name="ElPanel" Orientation="Horizontal">
+                                                    <ComboBox x:Name="Combobox1" Width="100" />
+                                                    <Button x:Name="AgregarActividad" Content="+"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+
+                                    <!--COLUMNA FECHA PROGRAMADA-->
+                                    <DataGridTemplateColumn Header="Fecha Programada">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <DatePicker SelectedDate="{Binding Fecha_Programada, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+
+                                    <!--COLUMNA REALIZADA-->
+                                    <DataGridCheckBoxColumn  Header="Realizada" Binding="{Binding Progreso ,Mode=TwoWay}" Width="auto"/>
+
+                                    <!--COLUMNA COMENTARIO-->
+                                    <DataGridTemplateColumn Header="Comentario" Width="*">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+
+                                                <TextBox Text="{Binding Comentario, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
