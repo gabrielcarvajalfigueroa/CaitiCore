@@ -87,6 +87,7 @@
                 
                 <!--BOTON PROPOSITO-->
                 <Button x:Name="btnProposito"
+                Command="{Binding Proposito}"
                 Grid.Column="1"
                 Grid.Row="0"               
                 BorderThickness="0"
@@ -122,6 +123,7 @@
                 
                 <!--BOTON RESULTADOS DE APRENDIZAJE-->
                 <Button x:Name="btnRDAprendizaje"
+                Command="{Binding RA}"
                 Grid.Column="1"
                 Grid.Row="1"                
                 BorderThickness="0"

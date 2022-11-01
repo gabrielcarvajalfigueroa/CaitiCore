@@ -43,14 +43,25 @@ namespace CaitiCore.ViewModels
         }
 
         public ICommand Planificar { get; }
+
+        public ICommand Proposito { get; }
+        
+        public ICommand RA { get; }
         public ICommand Volver { get; }
 
-        public CursoViewModel(Sistema sistema, NavigationService MenuView, NavigationService PlanificacionView)
+        public CursoViewModel(Sistema sistema,
+                              NavigationService MenuView,
+                              NavigationService PlanificacionView,
+                              ModalNavigationService PropositoView,
+                              ModalNavigationService RAView)
         {
             _nombreProfesor = sistema._profesorEnSesion.Nombre;
             _cursoEditando = sistema._cursoEnSesion.Nombre_Curso;
 
             Planificar = new NavigateCommand(PlanificacionView);
+
+            Proposito = new ModalNavigateCommand(PropositoView);
+            RA = new ModalNavigateCommand(RAView);
             Volver = new NavigateCommand(MenuView);
         }
     }

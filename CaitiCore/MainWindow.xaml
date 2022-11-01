@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CaitiCore"
         xmlns:views="clr-namespace:CaitiCore.Views"
-        xmlns:viewmodels="clr-namespace:CaitiCore.ViewModels"
+        xmlns:viewmodels="clr-namespace:CaitiCore.ViewModels" 
+        xmlns:custom="clr-namespace:ModalControl;assembly=ModalControl"
         WindowState="Maximized"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -33,10 +34,22 @@
                 <views:Planificacion/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewmodels:PropositoViewModel}">
+                <views:PropositoView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:ResultadosAprendizajeViewModel}">
+                <views:ResultadosAprendizajeView/>
+            </DataTemplate>
+
 
 
 
         </Grid.Resources>
+
+        <custom:Modal Panel.ZIndex="1" IsOpen="{Binding IsOpen}">
+            <ContentControl Content="{Binding CurrentModalViewModel}" />
+        </custom:Modal>
 
         <ContentControl Content="{Binding CurrentViewModel}"/>
 

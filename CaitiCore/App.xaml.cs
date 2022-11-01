@@ -19,13 +19,16 @@ namespace CaitiCore
     {
         private readonly Sistema _sistema;
         private readonly NavigationStore _navigationStore;
-        
+        private readonly ModalNavigationStore _modalnavigationStore;
+
         public App()
         {
 
             _sistema = new SistemaImpl();
 
             _navigationStore = new NavigationStore();
+
+            _modalnavigationStore = new ModalNavigationStore();
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -37,7 +40,7 @@ namespace CaitiCore
 
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel(_navigationStore)
+                DataContext = new MainViewModel(_navigationStore, _modalnavigationStore)
             };
 
             MainWindow.Show();
@@ -70,8 +73,23 @@ namespace CaitiCore
         {
             return new CursoViewModel(_sistema, 
                 new NavigationService(_navigationStore, CreateMenuViewModel),
-                new NavigationService(_navigationStore, CreatePlanificacionViewModel));
+                new NavigationService(_navigationStore, CreatePlanificacionViewModel),
+                new ModalNavigationService(_modalnavigationStore, CreatePropositoViewModel),
+                new ModalNavigationService(_modalnavigationStore, CreateResultadosAprendizajeViewModel));
         }
+
+        // Inicio de los POPUPS
+        private PropositoViewModel CreatePropositoViewModel()
+        {
+            return new PropositoViewModel(new ModalNavigationService(_modalnavigationStore,CreateCursoViewModel));// La segunda funcion no sirve de nada es Para que no quede en null el atributo de la clase o se cae
+        }
+
+        private ResultadosAprendizajeViewModel CreateResultadosAprendizajeViewModel()
+        {
+            return new ResultadosAprendizajeViewModel(new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
+        }
+
+        // Fin de los POPUPS
 
         private PlanificacionViewModel CreatePlanificacionViewModel()
         {
