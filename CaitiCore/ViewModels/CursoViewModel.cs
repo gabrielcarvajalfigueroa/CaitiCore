@@ -47,13 +47,22 @@ namespace CaitiCore.ViewModels
         public ICommand Proposito { get; }
         
         public ICommand RA { get; }
+
+        public ICommand Ayudante { get; }
+
+        public ICommand AspectosAdministrativos { get; }
+
+        public ICommand Recursos { get; }
         public ICommand Volver { get; }
 
         public CursoViewModel(Sistema sistema,
                               NavigationService MenuView,
                               NavigationService PlanificacionView,
                               ModalNavigationService PropositoView,
-                              ModalNavigationService RAView)
+                              ModalNavigationService RAView,
+                              ModalNavigationService AyudanteView,
+                              ModalNavigationService AspAdministrativosView,
+                              ModalNavigationService RecursosView)
         {
             _nombreProfesor = sistema._profesorEnSesion.Nombre;
             _cursoEditando = sistema._cursoEnSesion.Nombre_Curso;
@@ -62,6 +71,9 @@ namespace CaitiCore.ViewModels
 
             Proposito = new ModalNavigateCommand(PropositoView);
             RA = new ModalNavigateCommand(RAView);
+            Ayudante = new ModalNavigateCommand(AyudanteView);
+            AspectosAdministrativos = new ModalNavigateCommand(AspAdministrativosView);
+            Recursos = new ModalNavigateCommand(RecursosView);
             Volver = new NavigateCommand(MenuView);
         }
     }

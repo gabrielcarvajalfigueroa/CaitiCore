@@ -42,7 +42,21 @@
                 <views:ResultadosAprendizajeView/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewmodels:ActividadViewModel}">
+                <views:ActividadView/>
+            </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewmodels:AyudanteViewModel}">
+                <views:Ayudante/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:AspAdministrativosViewModel}">
+                <views:AspAdministrativos/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:RecursosViewModel}">
+                <views:Recursos/>
+            </DataTemplate>
 
 
         </Grid.Resources>

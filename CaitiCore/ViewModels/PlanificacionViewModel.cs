@@ -29,11 +29,15 @@ namespace CaitiCore.ViewModels
 
         public ICommand Volver { get; }
 
-        public PlanificacionViewModel(Sistema sistema, NavigationService CursoView)
+        public ICommand AgregarActividad { get; }
+
+        public PlanificacionViewModel(Sistema sistema,
+                                      NavigationService CursoView,
+                                      ModalNavigationService ActividadView)
         {
             _listaSemanas = new ObservableCollection<Semana>(sistema._cursoEnSesion.Planificacion_Curso.Semanas);
 
-
+            AgregarActividad = new ModalNavigateCommand(ActividadView);
             Guardar = new GuardarPlanificacionCommand(this, sistema);
             Volver = new NavigateCommand(CursoView);
         }

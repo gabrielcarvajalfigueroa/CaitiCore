@@ -75,7 +75,10 @@ namespace CaitiCore
                 new NavigationService(_navigationStore, CreateMenuViewModel),
                 new NavigationService(_navigationStore, CreatePlanificacionViewModel),
                 new ModalNavigationService(_modalnavigationStore, CreatePropositoViewModel),
-                new ModalNavigationService(_modalnavigationStore, CreateResultadosAprendizajeViewModel));
+                new ModalNavigationService(_modalnavigationStore, CreateResultadosAprendizajeViewModel),
+                new ModalNavigationService(_modalnavigationStore, CreateAyudanteViewModel),
+                new ModalNavigationService(_modalnavigationStore, CreateAspAdministrativosViewModel),
+                new ModalNavigationService(_modalnavigationStore, CreateRecursosViewModel));
         }
 
         // Inicio de los POPUPS
@@ -89,12 +92,33 @@ namespace CaitiCore
             return new ResultadosAprendizajeViewModel(new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
         }
 
+        private AyudanteViewModel CreateAyudanteViewModel()
+        {
+            return new AyudanteViewModel(new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
+        }
+
+        private AspAdministrativosViewModel CreateAspAdministrativosViewModel()
+        {
+            return new AspAdministrativosViewModel(new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
+        }
+
+        private RecursosViewModel CreateRecursosViewModel()
+        {
+            return new RecursosViewModel(new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
+        }
+
         // Fin de los POPUPS
 
         private PlanificacionViewModel CreatePlanificacionViewModel()
         {
             return new PlanificacionViewModel(_sistema,
-                new NavigationService(_navigationStore,CreateCursoViewModel));
+                new NavigationService(_navigationStore,CreateCursoViewModel),
+                new ModalNavigationService(_modalnavigationStore,CreateActividadViewModel));
+        }
+
+        private ActividadViewModel CreateActividadViewModel()
+        {
+            return new ActividadViewModel(new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
         }
 
 
