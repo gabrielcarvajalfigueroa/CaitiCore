@@ -55,7 +55,9 @@
                                             <DataTemplate>
                                                 <StackPanel Name="ElPanel" Orientation="Horizontal">
                                                     <ComboBox x:Name="Combobox1" Width="100" />
-                                                    <Button x:Name="AgregarActividad" Content="+"/>
+                                                    <Button 
+                                                            Content="+"
+                                                            Command="{Binding Path=DataContext.AgregarActividad, RelativeSource={RelativeSource AncestorType=local:Planificacion}}"/>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </DataGridTemplateColumn.CellTemplate>

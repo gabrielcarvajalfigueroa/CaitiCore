@@ -107,7 +107,10 @@ namespace CaitiCore.ViewModels
 
         public ICommand Volver { get; }
 
-        public MenuViewModel(Sistema sistema, NavigationService InicioView, NavigationService CursoView)
+        public MenuViewModel(Sistema sistema,
+                             NavigationService InicioView,
+                             NavigationService CursoView)
+                             
         {
             _nombreProfesor = sistema._profesorEnSesion.Nombre;
 

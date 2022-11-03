@@ -19,13 +19,16 @@ namespace CaitiCore
     {
         private readonly Sistema _sistema;
         private readonly NavigationStore _navigationStore;
-        
+        private readonly ModalNavigationStore _modalnavigationStore;
+
         public App()
         {
 
             _sistema = new SistemaImpl();
 
             _navigationStore = new NavigationStore();
+
+            _modalnavigationStore = new ModalNavigationStore();
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -37,7 +40,7 @@ namespace CaitiCore
 
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel(_navigationStore)
+                DataContext = new MainViewModel(_navigationStore, _modalnavigationStore)
             };
 
             MainWindow.Show();
@@ -70,13 +73,52 @@ namespace CaitiCore
         {
             return new CursoViewModel(_sistema, 
                 new NavigationService(_navigationStore, CreateMenuViewModel),
-                new NavigationService(_navigationStore, CreatePlanificacionViewModel));
+                new NavigationService(_navigationStore, CreatePlanificacionViewModel),
+                new ModalNavigationService(_modalnavigationStore, CreatePropositoViewModel),
+                new ModalNavigationService(_modalnavigationStore, CreateResultadosAprendizajeViewModel),
+                new ModalNavigationService(_modalnavigationStore, CreateAyudanteViewModel),
+                new ModalNavigationService(_modalnavigationStore, CreateAspAdministrativosViewModel),
+                new ModalNavigationService(_modalnavigationStore, CreateRecursosViewModel));
         }
+
+        // Inicio de los POPUPS
+        private PropositoViewModel CreatePropositoViewModel()
+        {
+            return new PropositoViewModel(new ModalNavigationService(_modalnavigationStore,CreateCursoViewModel));// La segunda funcion no sirve de nada es Para que no quede en null el atributo de la clase o se cae
+        }
+
+        private ResultadosAprendizajeViewModel CreateResultadosAprendizajeViewModel()
+        {
+            return new ResultadosAprendizajeViewModel(new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
+        }
+
+        private AyudanteViewModel CreateAyudanteViewModel()
+        {
+            return new AyudanteViewModel(new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
+        }
+
+        private AspAdministrativosViewModel CreateAspAdministrativosViewModel()
+        {
+            return new AspAdministrativosViewModel(new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
+        }
+
+        private RecursosViewModel CreateRecursosViewModel()
+        {
+            return new RecursosViewModel(new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
+        }
+
+        // Fin de los POPUPS
 
         private PlanificacionViewModel CreatePlanificacionViewModel()
         {
             return new PlanificacionViewModel(_sistema,
-                new NavigationService(_navigationStore,CreateCursoViewModel));
+                new NavigationService(_navigationStore,CreateCursoViewModel),
+                new ModalNavigationService(_modalnavigationStore,CreateActividadViewModel));
+        }
+
+        private ActividadViewModel CreateActividadViewModel()
+        {
+            return new ActividadViewModel(new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
         }
 
 

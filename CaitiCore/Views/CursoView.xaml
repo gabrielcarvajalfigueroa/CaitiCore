@@ -87,6 +87,7 @@
                 
                 <!--BOTON PROPOSITO-->
                 <Button x:Name="btnProposito"
+                Command="{Binding Proposito}"
                 Grid.Column="1"
                 Grid.Row="0"               
                 BorderThickness="0"
@@ -122,6 +123,7 @@
                 
                 <!--BOTON RESULTADOS DE APRENDIZAJE-->
                 <Button x:Name="btnRDAprendizaje"
+                Command="{Binding RA}"
                 Grid.Column="1"
                 Grid.Row="1"                
                 BorderThickness="0"
@@ -157,6 +159,7 @@
                 
                 <!--BOTON AYUDANTES-->
                 <Button x:Name="btnAyudantes"
+                Command="{Binding Ayudante}"
                 Grid.Column="1"
                 Grid.Row="2"
                 BorderThickness="0"
@@ -192,6 +195,7 @@
                 
                 <!--BOTON ASPECTOS ADMINISTRATIVOS-->
                 <Button x:Name="btnAspAdm"
+                Command="{Binding AspectosAdministrativos}"
                 Grid.Column="1"
                 Grid.Row="3"                
                 BorderThickness="0"
@@ -227,6 +231,7 @@
                 
                 <!--BOTON RECURSOS DE APRENDIZAJE-->
                 <Button x:Name="btnRecursos"
+                Command="{Binding Recursos}"
                 Grid.Column="1"
                 Grid.Row="4"               
                 BorderThickness="0"
