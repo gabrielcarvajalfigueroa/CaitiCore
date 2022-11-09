@@ -120,6 +120,8 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button Content="Descargar PDF"
+                                                Command="{Binding Path=DataContext.DescargarPDF, RelativeSource={RelativeSource AncestorType=local:MenuView}}"
+                                                CommandParameter="{Binding DataContext, RelativeSource={RelativeSource self}}"
                                             
                                         />
                                     </DataTemplate>

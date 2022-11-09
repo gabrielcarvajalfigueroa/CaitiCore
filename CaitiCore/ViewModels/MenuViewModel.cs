@@ -103,6 +103,8 @@ namespace CaitiCore.ViewModels
 
         public ICommand EditarCurso { get; }
 
+        public ICommand DescargarPDF { get; }
+
         public ICommand Aceptar { get; }
 
         public ICommand Volver { get; }
@@ -119,6 +121,7 @@ namespace CaitiCore.ViewModels
             Aceptar = new AgregarCursoCommand(this, sistema);
 
             EditarCurso = new EditarCursoCommand(sistema, CursoView);
+            DescargarPDF = new DescargarPDFCommand();
             Volver = new NavigateCommand(InicioView);
 
         }
