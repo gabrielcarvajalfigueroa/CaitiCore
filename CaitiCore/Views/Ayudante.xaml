@@ -31,12 +31,14 @@
             Margin="0,0,0,20"
             Text="Ayudantes" />
 
+
         <DataGrid Grid.Row="1" ItemsSource="{Binding Ayudantes}" AutoGenerateColumns="False" >
             <DataGrid.Columns>
                 <DataGridTextColumn  Header="Nombre" Binding="{Binding Nombre}" Width="*"/>
                 <DataGridTextColumn  Header="Correo" Binding="{Binding Correo}" Width="*"/>
                 <DataGridTextColumn  Header="Telefono" Binding="{Binding Telefono}" Width="*"/>
                 <DataGridTextColumn  Header="Horario de atencion" Binding="{Binding Horario_Atencion}" Width="*" />
+
             </DataGrid.Columns>
         </DataGrid>
 
@@ -161,8 +163,10 @@
             Grid.Row="2"
             Margin="0 20 0 0"
             Padding="5 2"
+
             HorizontalAlignment="Right"  
             Command="{Binding Guardar}"
+
             Content="Guardar" />
         </StackPanel>
 

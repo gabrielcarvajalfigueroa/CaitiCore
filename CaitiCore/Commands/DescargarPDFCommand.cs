@@ -23,7 +23,7 @@ namespace CaitiCore.Commands
         {
             Curso curso = (Curso)parameter; // Se pasa el curso por CommandParameter en la listview de MenuView
 
-            FileStream fs = new FileStream(@"C:\Users\pablo\Desktop\app.pdf", FileMode.Create);
+            FileStream fs = new FileStream(@"C:\Users\gcarv\Desktop\app.pdf", FileMode.Create);
             Document doc = new Document(PageSize.Legal.Rotate());
             doc.SetMargins(20f, 20f, 20f, 20f);
             PdfWriter writer = PdfWriter.GetInstance(doc, fs);
