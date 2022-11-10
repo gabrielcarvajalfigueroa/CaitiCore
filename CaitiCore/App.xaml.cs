@@ -94,7 +94,7 @@ namespace CaitiCore
 
         private AyudanteViewModel CreateAyudanteViewModel()
         {
-            return new AyudanteViewModel(new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
+            return new AyudanteViewModel(_sistema, new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
         }
 
         private AspAdministrativosViewModel CreateAspAdministrativosViewModel()
