@@ -19,7 +19,7 @@
                 <ColumnDefinition Width="250"/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" Background="#233EFF">
+            <StackPanel Grid.Column="0" Background="#29b6f6">
                 <TextBlock
                     Margin="0 20 0 5"
                     Text="Bienvenido"
@@ -39,7 +39,29 @@
 
                 <Button
                     Margin="0,40,0,0"
-                    Content="Agregar Curso"/>
+                    Content="Agregar Curso"
+                    Foreground="#FFF7E9" Click="Button_Click">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#1e88e5"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#28AEED"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Width="150" Height="40"
+                                    CornerRadius="20"
+                                    Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
 
                 <!--Boton para volver-->
                 <Button 
@@ -135,8 +157,7 @@
                 <StackPanel 
                     Grid.Row="1">
 
-                    <Label Content="Agregar Curso"
-                           Margin="100,0,0,20"/>
+                    <Label Content="Agregar Curso" HorizontalContentAlignment="Center" Background="#FFDBE2EF" />
 
                     <StackPanel Width="400">
                         <Label Content="Nombre Curso"/>
@@ -151,10 +172,20 @@
 
                     <Button Content="Aceptar"
                             Command="{Binding Aceptar}"
-                            Width="100"
-                            HorizontalAlignment="Right"
-                            Margin="0,10,50,0"
-                            />
+                            Width="96"
+                            Foreground="White" BorderBrush="#FFDBE2EF" Background="#1e88e5" Height="34" HorizontalAlignment="Right" Margin="0,15,72,0"
+                            >
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Width="90" Height="30"
+                                    CornerRadius="9"
+                                    Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
 
                 </StackPanel>
 
