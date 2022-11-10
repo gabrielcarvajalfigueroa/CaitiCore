@@ -31,9 +31,9 @@
             Margin="0,0,0,20"
             Text="Recursos" />
 
-        <DataGrid Grid.Row="1" AutoGenerateColumns="False">
+        <DataGrid Grid.Row="1" AutoGenerateColumns="False" >
             <DataGrid.Columns>
-                <DataGridTextColumn  Header="Recursos" Binding="{Binding Id_Clase}" Width="*"/>
+                <DataGridTextColumn  Header="Recursos"  Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
 

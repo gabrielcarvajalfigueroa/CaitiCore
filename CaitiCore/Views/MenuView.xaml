@@ -6,58 +6,56 @@
              xmlns:local="clr-namespace:CaitiCore.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Border CornerRadius="0"                    
-            BorderThickness="1"
-            Opacity="0.95"
-            >
+    <Border>
         <Border.Background>
-            <SolidColorBrush Color="#FFFF">
+            <SolidColorBrush Color="#eeeeee">
             </SolidColorBrush>
         </Border.Background>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250"/>
-                <ColumnDefinition />
+                <ColumnDefinition MaxWidth="400"/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" Background="#233EFF">
+            <Border>
+                <Border.Background>
+                    <SolidColorBrush Color="#29b6f6"/>
+                </Border.Background>
+            </Border>
+            <Image Source="/Images/UCN.png" Grid.Column="2" Opacity="0.2"/>
+            <Grid HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Image Source="/Images/LogoLetras.png"
+                        VerticalAlignment="Center"
+                       HorizontalAlignment="Center" Width="271" Height="82" Grid.Row="0"
+                       />
                 <TextBlock
-                    Margin="0 20 0 5"
                     Text="Bienvenido"
+                    Grid.Row="1"
                     Foreground="White"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    FontSize="24">
-                </TextBlock>
+                    VerticalAlignment="Center"
+                    FontSize="24"/>
                 <TextBlock
-                    Margin="0 20 0 0"
-                    Text="{Binding NombreProfesor}"
-                    Foreground="White"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    FontSize="24">
-                </TextBlock>
-
+                        Grid.Row="2"
+                        Text="{Binding NombreProfesor}"
+                        Foreground="White"
+                        FontSize="24"
+                        VerticalAlignment="Top" 
+                        HorizontalAlignment="Center" 
+                        Height="32"/>
                 <Button
-                    Margin="0,40,0,0"
-                    Content="Agregar Curso"/>
-
-                <!--Boton para volver-->
-                <Button 
-                Grid.Column="0"
-                    Margin="0,400,0,0"
-                Command="{Binding Volver}"
-                BorderThickness="0"
-                Content="Volver"
-                Foreground="White"
-                FontSize="12"
-                FontFamily="Montserrat"
-                Cursor="Hand"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Center"
-                >
+                    Grid.Row="3"
+                    Content="Agregar Curso"
+                    Foreground="#FFF7E9">
                     <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Background" Value="#233EFF"/>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#1e88e5"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Background" Value="#28AEED"/>
@@ -66,8 +64,40 @@
                         </Style>
                     </Button.Style>
                     <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Width="250" Height="40"
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Width="150" Height="40"
+                                    CornerRadius="20"
+                                    Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button
+                        Grid.Row="4"
+                        Command="{Binding Volver}"
+                        BorderThickness="0"
+                        Content="Volver"
+                        Foreground="White"
+                        FontSize="12"
+                        FontFamily="Montserrat"
+                        Cursor="Hand"
+                        Height="40"
+                        VerticalAlignment="Bottom" Margin="0,0,0,30">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#1e88e5"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#85c1e9"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Width="150" Height="40"
                                         CornerRadius="20"
                                         Background="{TemplateBinding Background}">
                                 <ContentPresenter VerticalAlignment="Center"
@@ -76,34 +106,51 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-
-            </StackPanel>
-
-
+            </Grid>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
-                    <RowDefinition Height="200"/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
-
                 <ListView 
                   Grid.Row="0"
                   Name="CursosList"
-                  Margin="50,20,50,10"                                  
+                  Margin="50,20,50,10"
+                    FontFamily="Montserrat"
                   ItemsSource="{Binding CursosProfeEnSesion,UpdateSourceTrigger=PropertyChanged}"
-                  SelectedItem="{Binding SelectedCurso, Mode=TwoWay}" >
-                    <ListView.View>
+                  SelectedItem="{Binding SelectedCurso, Mode=TwoWay}"  Background="#0000ffff" BorderBrush="#0000ffff">
+                    <ListView.View >
                         <GridView>
-                            <GridViewColumn Header="Nombre" Width="300"  DisplayMemberBinding="{Binding Nombre_Curso}"/>
+                            <GridViewColumn Header="Nombre" DisplayMemberBinding="{Binding Nombre_Curso}">
+                            </GridViewColumn>
                             <GridViewColumn>
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button Content="Editar"
-                                            Width="100"
                                             Command="{Binding Path=DataContext.EditarCurso, RelativeSource={RelativeSource AncestorType=local:MenuView}}"
                                             CommandParameter="{Binding DataContext, RelativeSource={RelativeSource self}}"
-                                            
-                                        />
+                                            Foreground="White">
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Background" Value="#1e88e5"/>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Background" Value="#85c1e9"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border Width="150" Height="40"
+                                    CornerRadius="20"
+                                    Background="{TemplateBinding Background}">
+                                                        <ContentPresenter VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -111,8 +158,28 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button Content="Eliminar"
-                                            Width="100"
-                                        />
+                                                Foreground="White">
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Background" Value="#1e88e5"/>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Background" Value="#85c1e9"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border Width="150" Height="40"
+                                    CornerRadius="20"
+                                    Background="{TemplateBinding Background}">
+                                                        <ContentPresenter VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -122,49 +189,104 @@
                                         <Button Content="Descargar PDF"
                                                 Command="{Binding Path=DataContext.DescargarPDF, RelativeSource={RelativeSource AncestorType=local:MenuView}}"
                                                 CommandParameter="{Binding DataContext, RelativeSource={RelativeSource self}}"
-                                            
-                                        />
+                                                Foreground="White">
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Background" Value="#1e88e5"/>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Background" Value="#85c1e9"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border Width="150" Height="40"
+                                    CornerRadius="20"
+                                    Background="{TemplateBinding Background}">
+                                                        <ContentPresenter VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-
                         </GridView>
                     </ListView.View>
                 </ListView>
-
-                <StackPanel 
-                    Grid.Row="1">
-
-                    <Label Content="Agregar Curso"
-                           Margin="100,0,0,20"/>
-
-                    <StackPanel Width="400">
-                        <Label Content="Nombre Curso"/>
-                        <TextBox Text="{Binding NombreCurso, UpdateSourceTrigger=PropertyChanged}"/>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Agregar Curso"
+                           Grid.Row="0"
+                           FontSize="15"
+                           FontWeight="Medium"
+                           FontFamily="Montserrat"
+                           TextAlignment="Center"
+                               VerticalAlignment="Center"/>
+                    <StackPanel Width="400"
+                            Grid.Row="1">
+                        <TextBlock Text="Nombre Curso"
+                           Grid.Row="0"
+                           FontSize="13"
+                           FontWeight="Medium"
+                           FontFamily="Montserrat"
+                           TextAlignment="Center"
+                               VerticalAlignment="Center"/>
+                        <TextBox Text="{Binding NombreCurso, UpdateSourceTrigger=PropertyChanged}"
+                                 Background="#0000ffff"
+                                 HorizontalAlignment="Center"
+                                 MaxWidth="400"
+                                 Width="200"/>
                     </StackPanel>
-
-                    <StackPanel Width="400">
-                        <Label Content="Creditos"/>
-                        <TextBox Text="{Binding Creditos, UpdateSourceTrigger=PropertyChanged}"/>
+                    <StackPanel Width="400"
+                            Grid.Row="2">
+                        <TextBlock Text="Creditos"
+                           Grid.Row="0"
+                           FontSize="13"
+                           FontWeight="Medium"
+                           FontFamily="Montserrat"
+                           TextAlignment="Center"
+                               VerticalAlignment="Center"/>
+                        <TextBox Text="{Binding Creditos, UpdateSourceTrigger=PropertyChanged}"
+                                 Background="#0000ffff"
+                                 MaxWidth="400"
+                                 Width="200"/>
                     </StackPanel>
-
-
                     <Button Content="Aceptar"
+                            Grid.Row="3"
                             Command="{Binding Aceptar}"
-                            Width="100"
-                            HorizontalAlignment="Right"
-                            Margin="0,10,50,0"
-                            />
-
-                </StackPanel>
-
+                            Foreground="White">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#1e88e5"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#28AEED"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Width="150" Height="40"
+                                    CornerRadius="20"
+                                    Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
             </Grid>
-
-
-
-
-
-
         </Grid>
     </Border>
 </UserControl>

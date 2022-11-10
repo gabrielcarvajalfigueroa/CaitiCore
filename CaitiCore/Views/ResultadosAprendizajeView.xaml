@@ -31,10 +31,10 @@
             Margin="0,0,0,20"
             Text="Resultados de Aprendizaje" />
 
-        <DataGrid Grid.Row="1" AutoGenerateColumns="False">
+        <DataGrid Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding RAS}">
             <DataGrid.Columns>
-                <DataGridTextColumn  Header="N°" Binding="{Binding Id_Clase}" Width="35"/>
-                <DataGridTextColumn  Header="Resultado de Aprendizaje" Binding="{Binding Id_Clase}" Width="*"/>
+                <DataGridTextColumn  Header="N°" Binding="{Binding Id}" Width="35"/>
+                <DataGridTextColumn  Header="Resultado de Aprendizaje" Binding="{Binding Resultado}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
 
