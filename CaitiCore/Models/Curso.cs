@@ -13,8 +13,26 @@ namespace CaitiCore.Models
         public string Carrera { get; set; }
 
         public string Coordinador { get; set; }
+        
+        public string Unidad_Responsable { get; set; }
 
         public string Codigo_NRC { get; set; }
+
+        public int Semestre_Ano { get; set; }
+
+        public int Semestre_Malla { get; set; }
+
+        public int Creditos_SCT { get; set; }
+
+        public string Tipo { get; set; }
+
+        public OrganizacionSemestral Organizacion { get; set; }
+
+        public List<Ayudante> Ayudantes { get; set; }
+
+        public string Proposito { get; set; }
+
+        public List<ResultadoAprendizaje> RAs { get; set; }
 
         public Planificacion Planificacion_Curso { get; set; }
 
