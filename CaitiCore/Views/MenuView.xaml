@@ -49,31 +49,7 @@
                         VerticalAlignment="Top" 
                         HorizontalAlignment="Center" 
                         Height="32"/>
-                <Button
-                    Grid.Row="3"
-                    Content="Agregar Curso"
-                    Foreground="#FFF7E9">
-                    <Button.Style>
-                        <Style TargetType="{x:Type Button}">
-                            <Setter Property="Background" Value="#1e88e5"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#28AEED"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                    <Button.Template>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <Border Width="150" Height="40"
-                                    CornerRadius="20"
-                                    Background="{TemplateBinding Background}">
-                                <ContentPresenter VerticalAlignment="Center"
-                                                  HorizontalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
+                
                 <Button
                         Grid.Row="4"
                         Command="{Binding Volver}"
@@ -112,17 +88,21 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <ListView 
+                <ListView  
                   Grid.Row="0"
                   Name="CursosList"
                   Margin="50,20,50,10"
-                    FontFamily="Montserrat"
+                  FontFamily="Montserrat"
                   ItemsSource="{Binding CursosProfeEnSesion,UpdateSourceTrigger=PropertyChanged}"
-                  SelectedItem="{Binding SelectedCurso, Mode=TwoWay}"  Background="#0000ffff" BorderBrush="#0000ffff">
+                    Background="#0000ffff" BorderBrush="#0000ffff">
                     <ListView.View >
                         <GridView>
-                            <GridViewColumn Header="Nombre" DisplayMemberBinding="{Binding Nombre_Curso}">
+                            <!--NOMBRE DEL CURSO-->
+                            <GridViewColumn Header="Nombre" 
+                                            DisplayMemberBinding="{Binding Nombre_Curso}"
+                                            >
                             </GridViewColumn>
+                            <!--BOTON PARA EDITAR CURSO-->
                             <GridViewColumn>
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
@@ -154,36 +134,8 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn>
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button Content="Eliminar"
-                                                Foreground="White">
-                                            <Button.Style>
-                                                <Style TargetType="{x:Type Button}">
-                                                    <Setter Property="Background" Value="#1e88e5"/>
-                                                    <Style.Triggers>
-                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter Property="Background" Value="#85c1e9"/>
-                                                        </Trigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Button.Style>
-                                            <Button.Template>
-                                                <ControlTemplate TargetType="{x:Type Button}">
-                                                    <Border Width="150" Height="40"
-                                    CornerRadius="20"
-                                    Background="{TemplateBinding Background}">
-                                                        <ContentPresenter VerticalAlignment="Center"
-                                                  HorizontalAlignment="Center"/>
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Button.Template>
-                                        </Button>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn>
+                            <!--BOTON PARA DESCARGAR PDF-->
+                            <GridViewColumn >
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button Content="Descargar PDF"
@@ -217,75 +169,7 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
-                <Grid Grid.Row="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="Agregar Curso"
-                           Grid.Row="0"
-                           FontSize="15"
-                           FontWeight="Medium"
-                           FontFamily="Montserrat"
-                           TextAlignment="Center"
-                               VerticalAlignment="Center"/>
-                    <StackPanel Width="400"
-                            Grid.Row="1">
-                        <TextBlock Text="Nombre Curso"
-                           Grid.Row="0"
-                           FontSize="13"
-                           FontWeight="Medium"
-                           FontFamily="Montserrat"
-                           TextAlignment="Center"
-                               VerticalAlignment="Center"/>
-                        <TextBox Text="{Binding NombreCurso, UpdateSourceTrigger=PropertyChanged}"
-                                 Background="#0000ffff"
-                                 HorizontalAlignment="Center"
-                                 MaxWidth="400"
-                                 Width="200"/>
-                    </StackPanel>
-                    <StackPanel Width="400"
-                            Grid.Row="2">
-                        <TextBlock Text="Creditos"
-                           Grid.Row="0"
-                           FontSize="13"
-                           FontWeight="Medium"
-                           FontFamily="Montserrat"
-                           TextAlignment="Center"
-                               VerticalAlignment="Center"/>
-                        <TextBox Text="{Binding Creditos, UpdateSourceTrigger=PropertyChanged}"
-                                 Background="#0000ffff"
-                                 MaxWidth="400"
-                                 Width="200"/>
-                    </StackPanel>
-                    <Button Content="Aceptar"
-                            Grid.Row="3"
-                            Command="{Binding Aceptar}"
-                            Foreground="White">
-                        <Button.Style>
-                            <Style TargetType="{x:Type Button}">
-                                <Setter Property="Background" Value="#1e88e5"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#28AEED"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                        <Button.Template>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border Width="150" Height="40"
-                                    CornerRadius="20"
-                                    Background="{TemplateBinding Background}">
-                                    <ContentPresenter VerticalAlignment="Center"
-                                                  HorizontalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                </Grid>
+                
             </Grid>
         </Grid>
     </Border>

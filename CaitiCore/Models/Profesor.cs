@@ -1,5 +1,4 @@
-﻿using CaitiCore.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CaitiCore.Models
 {
-    public class ProfesorModel
+    public class Profesor
     {
         public string Nombre { get; set; }
 
@@ -19,7 +18,7 @@ namespace CaitiCore.Models
 
         public List<Curso> Cursos { get; set; }
 
-        public ProfesorModel(string nombre, string email, string telefono, string horario_atencion)
+        public Profesor(string nombre, string email, string telefono, string horario_atencion)
         {
             Nombre = nombre;
             Email = email;

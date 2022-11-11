@@ -8,7 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Border>
         <Border.Background>
-            <SolidColorBrush Color="#FFFF">
+            <SolidColorBrush Color="#eeeeee">
             </SolidColorBrush>
         </Border.Background>
         <Grid>
@@ -112,10 +112,10 @@
                 >
                     <Button.Style>
                         <Style TargetType="Button">
-                            <Setter Property="Background" Value="#233EFF"/>
+                            <Setter Property="Background" Value="#1e88e5"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#28AEED"/>
+                                    <Setter Property="Background" Value="#85c1e9"/>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
@@ -148,10 +148,10 @@
                 >
                     <Button.Style>
                         <Style TargetType="Button">
-                            <Setter Property="Background" Value="#233EFF"/>
+                            <Setter Property="Background" Value="#1e88e5"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#28AEED"/>
+                                    <Setter Property="Background" Value="#85c1e9"/>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
@@ -184,10 +184,10 @@
                 >
                     <Button.Style>
                         <Style TargetType="Button">
-                            <Setter Property="Background" Value="#233EFF"/>
+                            <Setter Property="Background" Value="#1e88e5"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#28AEED"/>
+                                    <Setter Property="Background" Value="#85c1e9"/>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
@@ -220,10 +220,10 @@
                 >
                     <Button.Style>
                         <Style TargetType="Button">
-                            <Setter Property="Background" Value="#233EFF"/>
+                            <Setter Property="Background" Value="#1e88e5"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#28AEED"/>
+                                    <Setter Property="Background" Value="#85c1e9"/>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
@@ -256,10 +256,10 @@
                 >
                     <Button.Style>
                         <Style TargetType="Button">
-                            <Setter Property="Background" Value="#233EFF"/>
+                            <Setter Property="Background" Value="#1e88e5"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#28AEED"/>
+                                    <Setter Property="Background" Value="#85c1e9"/>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
@@ -292,10 +292,10 @@
                 >
                     <Button.Style>
                         <Style TargetType="Button">
-                            <Setter Property="Background" Value="#233EFF"/>
+                            <Setter Property="Background" Value="#1e88e5"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#28AEED"/>
+                                    <Setter Property="Background" Value="#85c1e9"/>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
@@ -327,10 +327,10 @@
                 >
                     <Button.Style>
                         <Style TargetType="Button">
-                            <Setter Property="Background" Value="#233EFF"/>
+                            <Setter Property="Background" Value="#1e88e5"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#28AEED"/>
+                                    <Setter Property="Background" Value="#85c1e9"/>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>

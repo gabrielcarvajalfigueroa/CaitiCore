@@ -1,5 +1,4 @@
-﻿using CaitiCore.Model;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,14 +11,14 @@ namespace CaitiCore.Models
 {
     public class SistemaImpl : Sistema
     {
-        public ProfesorModel _profesorEnSesion { get ; set ; }
+        public Profesor _profesorEnSesion { get ; set ; }
         public Curso _cursoEnSesion { get; set; }
 
         public void ActualizarPlanificacion(List<Semana> semanas)
         {
-            List<ProfesorModel> profesores = GetProfesorModels();
+            List<Profesor> profesores = GetProfesorModels();
 
-            foreach(ProfesorModel profesor in profesores)
+            foreach(Profesor profesor in profesores)
             {
                 if(profesor.Nombre == _profesorEnSesion.Nombre)
                 {
@@ -67,55 +66,15 @@ namespace CaitiCore.Models
             return planificacion;
         }
 
-        public List<ProfesorModel> GetProfesorModels()
+        public List<Profesor> GetProfesorModels()
         {
             string json = System.IO.File.ReadAllText(@"ProfesoresData.json");
 
-            List<ProfesorModel> Profesores = JsonConvert.DeserializeObject<List<ProfesorModel>>(json);
+            List<Profesor> Profesores = JsonConvert.DeserializeObject<List<Profesor>>(json);
 
             return Profesores;
         }
-
-        public void InsertCurso(ProfesorModel profeEnSesion,Curso curso)
-        {
-            List<ProfesorModel> Profesores = GetProfesorModels();
-
-            for(int i = 0; i < Profesores.Count; i++)
-            {
-                if(Profesores[i].Nombre == profeEnSesion.Nombre)
-                {
-                    Profesores[i].Cursos.Add(curso); // Para el update del json
-                    
-                    _profesorEnSesion.Cursos.Add(curso); // Para mantener el sistema actualizado
-                    break;
-                }
-            }
-
-            var NewJsonData = JsonConvert.SerializeObject(Profesores, Formatting.Indented);
-
-            File.WriteAllText(@"ProfesoresData.json", NewJsonData);
-
-            MessageBox.Show("Curso registrado con exito", "Success",
-                MessageBoxButton.OK, MessageBoxImage.Information);
-
-
-
-
-        }
-
-        public void InsertProfesorModel(ProfesorModel profesor)
-        {
-
-            List<ProfesorModel> Profesores = GetProfesorModels();
-
-            Profesores.Add(profesor);
-
-            var NewJsonData = JsonConvert.SerializeObject(Profesores, Formatting.Indented);
-
-            File.WriteAllText(@"ProfesoresData.json", NewJsonData);
-            
-            MessageBox.Show("Profesor registrado con exito", "Success",
-                MessageBoxButton.OK, MessageBoxImage.Information);
-        }
+        
+        
     }
 }

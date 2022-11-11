@@ -51,16 +51,9 @@ namespace CaitiCore
         private InicioViewModel CreateInicioViewModel()
         {
             return new InicioViewModel(_sistema
-                , new NavigationService(_navigationStore, CreateMenuViewModel)
-                , new NavigationService(_navigationStore, CreateRegistroViewModel));
+                , new NavigationService(_navigationStore, CreateMenuViewModel));
         }
-
-        private RegistroViewModel CreateRegistroViewModel()
-        {
-            return new RegistroViewModel(_sistema,
-                new NavigationService(_navigationStore, CreateMenuViewModel),
-                new NavigationService(_navigationStore, CreateInicioViewModel));
-        }
+        
 
         private MenuViewModel CreateMenuViewModel()
         {
