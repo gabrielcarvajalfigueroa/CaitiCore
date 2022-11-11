@@ -12,18 +12,18 @@ namespace CaitiCore.ViewModels
 {
     public class InicioViewModel : ViewModelBase
     {
-        private string _nombreUsuario;
+        private string _rut;
 
-        public string NombreUsuario
+        public string RUT
         {
             get
             {
-                return _nombreUsuario;
+                return _rut;
             }
             set
             {
-                _nombreUsuario = value;
-                OnPropertyChanged(nameof(NombreUsuario));
+                _rut = value;
+                OnPropertyChanged(nameof(RUT));
             }
         }
         

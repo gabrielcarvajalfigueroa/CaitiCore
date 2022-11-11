@@ -34,7 +34,7 @@ namespace CaitiCore.Commands
 
             foreach (var profesor in Profesores)
             {
-                if(profesor.Nombre == _inicioViewModel.NombreUsuario)
+                if(profesor.RUT == _inicioViewModel.RUT)
                 {
                     _sistema._profesorEnSesion = profesor;
 

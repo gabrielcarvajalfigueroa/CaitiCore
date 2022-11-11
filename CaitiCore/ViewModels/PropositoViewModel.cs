@@ -1,4 +1,5 @@
 ﻿using CaitiCore.Commands;
+using CaitiCore.Models;
 using CaitiCore.Services;
 using System;
 using System.Collections.Generic;
@@ -26,13 +27,14 @@ namespace CaitiCore.ViewModels
             }
         }
 
-
+        public ICommand Guardar { get; }
         public ICommand Cerrar { get; }
 
-        public PropositoViewModel(ModalNavigationService cerrar)
+        public PropositoViewModel(Sistema sistema, ModalNavigationService cerrar)
         {
-            _proposito = "Al final del curso el alumno podrá realizar el análisis, diseño orientado a objetos y construcción de un producto de software de calidad, que satisfaga los requisitos, necesidades y restricciones solicitadas, en base a un proceso iterativo e incremental.\n\nEn este análisis y diseño utilizará el lenguaje de modelado UML, y será capaz de aplicar las buenas prácticas recomendadas.\n \nEl trabajo lorealizará con apoyo de herramientas de software.";
+            _proposito = sistema._cursoEnSesion.Proposito;            
 
+            Guardar = new AgregarPropositoCommand(sistema, this);
             Cerrar = new CloseModalCommand(cerrar);
         }
         

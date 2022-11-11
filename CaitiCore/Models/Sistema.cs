@@ -18,5 +18,9 @@ namespace CaitiCore.Models
 
         void ActualizarPlanificacion(List<Semana> semanas);
 
+        void InsertarProposito(string Proposito, Profesor profesorEnSesion, Curso cursoEnSesion);
+
+        void InsertarAspAdmin(string AspAdmin, Profesor profesorEnSesion, Curso cursoEnSesion);
+
     }
 }

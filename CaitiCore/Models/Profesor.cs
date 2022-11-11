@@ -8,6 +8,8 @@ namespace CaitiCore.Models
 {
     public class Profesor
     {
+        public string RUT { get; set; }
+
         public string Nombre { get; set; }
 
         public string Email { get; set; }

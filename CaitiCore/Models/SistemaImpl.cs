@@ -74,7 +74,61 @@ namespace CaitiCore.Models
 
             return Profesores;
         }
-        
-        
+
+        public void InsertarAspAdmin(string AspAdmin, Profesor profesorEnSesion, Curso cursoEnSesion)
+        {
+            List<Profesor> profesores = GetProfesorModels();
+
+            foreach (Profesor profesor in profesores)
+            {
+                if (profesor.Nombre == profesorEnSesion.Nombre)
+                {
+                    foreach (Curso curso in profesor.Cursos)
+                    {
+                        if (curso.Nombre_Curso == cursoEnSesion.Nombre_Curso)
+                        {
+                            curso.Asp_Administrativo = AspAdmin;
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+            var NewJsonData = JsonConvert.SerializeObject(profesores, Formatting.Indented);
+
+            File.WriteAllText(@"ProfesoresData.json", NewJsonData);
+
+            MessageBox.Show("Aspecto Administrativo guardado con exito", "Success",
+                MessageBoxButton.OK, MessageBoxImage.Information);
+
+        }
+
+        public void InsertarProposito(string Proposito, Profesor profesorEnSesion, Curso cursoEnSesion)
+        {
+            List<Profesor> profesores = GetProfesorModels();
+
+            foreach (Profesor profesor in profesores)
+            {
+                if (profesor.Nombre == profesorEnSesion.Nombre)
+                {
+                    foreach (Curso curso in profesor.Cursos)
+                    {
+                        if (curso.Nombre_Curso == cursoEnSesion.Nombre_Curso)
+                        {
+                            curso.Proposito = Proposito;
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+            var NewJsonData = JsonConvert.SerializeObject(profesores, Formatting.Indented);
+
+            File.WriteAllText(@"ProfesoresData.json", NewJsonData);
+
+            MessageBox.Show("Proposito guardado con exito", "Success",
+                MessageBoxButton.OK, MessageBoxImage.Information);
+
+        }
     }
 }

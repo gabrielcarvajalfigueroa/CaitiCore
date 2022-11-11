@@ -77,7 +77,7 @@ namespace CaitiCore
         // Inicio de los POPUPS
         private PropositoViewModel CreatePropositoViewModel()
         {
-            return new PropositoViewModel(new ModalNavigationService(_modalnavigationStore,CreateCursoViewModel));// La segunda funcion no sirve de nada es Para que no quede en null el atributo de la clase o se cae
+            return new PropositoViewModel(_sistema, new ModalNavigationService(_modalnavigationStore,CreateCursoViewModel));// La segunda funcion no sirve de nada es Para que no quede en null el atributo de la clase o se cae
         }
 
         private ResultadosAprendizajeViewModel CreateResultadosAprendizajeViewModel()
@@ -92,7 +92,7 @@ namespace CaitiCore
 
         private AspAdministrativosViewModel CreateAspAdministrativosViewModel()
         {
-            return new AspAdministrativosViewModel(new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
+            return new AspAdministrativosViewModel(_sistema, new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
         }
 
         private RecursosViewModel CreateRecursosViewModel()
