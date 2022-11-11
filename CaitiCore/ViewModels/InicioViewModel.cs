@@ -26,14 +26,12 @@ namespace CaitiCore.ViewModels
                 OnPropertyChanged(nameof(NombreUsuario));
             }
         }
-
-        public ICommand RegistrarseCommand { get; }
+        
 
         public ICommand ContinuarCommand { get; }
 
-        public InicioViewModel(Sistema sistema, NavigationService menuNavigationService, NavigationService registroview)
-        {
-            RegistrarseCommand = new NavigateCommand(registroview);
+        public InicioViewModel(Sistema sistema, NavigationService menuNavigationService)
+        {            
             ContinuarCommand = new IniciarSesionCommand(this, sistema, menuNavigationService);
         }
 

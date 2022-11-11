@@ -5,42 +5,75 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CaitiCore.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Background="#233EFF">
     <Grid
         
         Margin="20"
         HorizontalAlignment="Center"
-        VerticalAlignment="Center">
+        VerticalAlignment="Center"
+        >
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="100" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="450" />
+            <ColumnDefinition Width="600" />
         </Grid.ColumnDefinitions>
 
         <TextBlock
             Grid.Row="0"
             HorizontalAlignment="Center"
+            Foreground="White"
             FontSize="28"
+            Margin="0,0,0,20"
             Text="Resultados de Aprendizaje" />
 
-        <StackPanel Grid.Row="1" Margin="0 20 0 0">
-            <StackPanel>
-                <TextBlock Text="Ingrese el RA:" />
-                <TextBox Text="" />
-            </StackPanel>
+        <DataGrid Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding RAS}">
+            <DataGrid.Columns>
+                <DataGridTextColumn  Header="N°" Binding="{Binding Id}" Width="35"/>
+                <DataGridTextColumn  Header="Resultado de Aprendizaje" Binding="{Binding Resultado}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
+        <TextBlock
+            Grid.Row="2"
+            Foreground="White"
+            HorizontalAlignment="Left"
+            FontSize="28"
+            Text="Ingrese Resultado de Aprendizaje:" />
+
+        <StackPanel Grid.Row="3" >
+            <TextBlock Text="Resultado de Aprendizaje:"
+                               Foreground="White"
+                               FontSize="12"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"                             
+                               Margin="0,35,0,0"/>
+            <TextBox x:Name="txtUser"
+                             Text="{Binding Nombre, UpdateSourceTrigger=PropertyChanged}"
+                             FontSize="13"
+                             FontWeight="Medium"
+                             FontFamily="Montserrat"                            
+                             Foreground="White"
+                             CaretBrush="LightGray"
+                             BorderBrush="DarkGray"
+                             BorderThickness="0,0,0,2"
+                             Height="28"
+                             VerticalContentAlignment="Center"
+                             Margin="0,5,0,0"
+                             Padding="20,0,0,0"
+                             Background="Transparent">
+            </TextBox>
         </StackPanel>
-
-
-        <StackPanel Grid.Row="2" Orientation="Horizontal">
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button
             Grid.Row="2"
             Margin="10 20 10 0"
             Padding="5 2"
-            HorizontalAlignment="Left"
+            HorizontalAlignment="Right"
             Command="{Binding Cerrar}"
             Content="Volver" />
 
@@ -48,7 +81,7 @@
             Grid.Row="2"
             Margin="0 20 0 0"
             Padding="5 2"
-            HorizontalAlignment="Left"
+            HorizontalAlignment="Right"            
             Content="Guardar" />
         </StackPanel>
 

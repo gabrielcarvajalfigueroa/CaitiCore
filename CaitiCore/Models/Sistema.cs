@@ -8,15 +8,11 @@ namespace CaitiCore.Models
 {
     public interface Sistema
     {
-        public ProfesorModel _profesorEnSesion { get; set; }
+        public Profesor _profesorEnSesion { get; set; }
 
         public Curso _cursoEnSesion { get; set; }
 
-        List<ProfesorModel> GetProfesorModels();
-
-        void InsertProfesorModel(ProfesorModel profesor);
-
-        void InsertCurso(ProfesorModel profeEnSesion,Curso curso);
+        List<Profesor> GetProfesorModels();                
 
         Planificacion CrearPlanificacionDefault();
 

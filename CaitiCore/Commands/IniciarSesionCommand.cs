@@ -30,7 +30,7 @@ namespace CaitiCore.Commands
         public override void Execute(object parameter)
         {
 
-            List<ProfesorModel> Profesores = _sistema.GetProfesorModels();
+            List<Profesor> Profesores = _sistema.GetProfesorModels();
 
             foreach (var profesor in Profesores)
             {

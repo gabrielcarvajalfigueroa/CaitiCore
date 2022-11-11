@@ -4,7 +4,6 @@ using CaitiCore.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,42 +69,11 @@ namespace CaitiCore.ViewModels
                 OnPropertyChanged(nameof(Creditos));
             }
         }
-
-        private Curso _selectedCurso;
-
-        public Curso SelectedCurso
-        {
-            get
-            {
-                return _selectedCurso;
-            }
-            set
-            {
-                _selectedCurso = value;
-                OnPropertyChanged(nameof(SelectedCurso));
-                Debug.WriteLine(_selectedCurso.Nombre_Curso);
-                Debug.WriteLine(_selectedCurso.Carrera);
-            }
-        }
-
-        private Curso _dataContext;
-
-        public Curso DataContext
-        {
-            get
-            {
-                Debug.WriteLine("HOLAAAAAAAAA");
-                Debug.WriteLine(_dataContext);
-                return _dataContext;
-            }
-            
-        }
-
+        
         public ICommand EditarCurso { get; }
 
         public ICommand DescargarPDF { get; }
-
-        public ICommand Aceptar { get; }
+        
 
         public ICommand Volver { get; }
 
@@ -116,19 +84,13 @@ namespace CaitiCore.ViewModels
         {
             _nombreProfesor = sistema._profesorEnSesion.Nombre;
 
-            _cursosProfeEnSesion = new ObservableCollection<Curso>(sistema._profesorEnSesion.Cursos);
-
-            Aceptar = new AgregarCursoCommand(this, sistema);
+            _cursosProfeEnSesion = new ObservableCollection<Curso>(sistema._profesorEnSesion.Cursos);            
 
             EditarCurso = new EditarCursoCommand(sistema, CursoView);
             DescargarPDF = new DescargarPDFCommand();
             Volver = new NavigateCommand(InicioView);
 
         }
-        /*
-        public void AgregarCurso(Subject subject)
-        {
-            _subjectsProfeEnSesion.Append<Subject>(subject);
-        }*/
+        
     }
 }

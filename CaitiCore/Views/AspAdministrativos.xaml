@@ -5,42 +5,47 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CaitiCore.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Background="#233EFF">
     <Grid
         
         Margin="20"
         HorizontalAlignment="Center"
-        VerticalAlignment="Center">
+        VerticalAlignment="Center"
+        >
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="500" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="450" />
+            <ColumnDefinition Width="900" />
         </Grid.ColumnDefinitions>
 
         <TextBlock
             Grid.Row="0"
             HorizontalAlignment="Center"
-            FontSize="28"
+            Foreground="White"
+            FontSize="26"
+            Margin="0,0,0,20"
             Text="Aspectos Administrativos" />
 
-        <StackPanel Grid.Row="1" Margin="0 20 0 0">
-            <StackPanel>
-                <TextBlock Text="Ingrese el Aspecto Administrativo:" />
-                <TextBox Text="" />
-            </StackPanel>
+        <TextBox
+                Grid.Row="1"
+                FontSize="24"
+                TextWrapping="Wrap" 
+                 AcceptsReturn="True"
+                   Text="{Binding AspectoAdministrativo}"
+                 ></TextBox>
 
-        </StackPanel>
 
-
-        <StackPanel Grid.Row="2" Orientation="Horizontal">
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button
             Grid.Row="2"
             Margin="10 20 10 0"
             Padding="5 2"
-            HorizontalAlignment="Left"
+            HorizontalAlignment="Right"
             Command="{Binding Cerrar}"
             Content="Volver" />
 
@@ -48,7 +53,7 @@
             Grid.Row="2"
             Margin="0 20 0 0"
             Padding="5 2"
-            HorizontalAlignment="Left"            
+            HorizontalAlignment="Right"            
             Content="Guardar" />
         </StackPanel>
 
