@@ -58,6 +58,8 @@
                          VerticalContentAlignment="Center"
                          Margin="0,5,0,0"
                          Width="210"/>
+                
+                <!--BOTON PARA CONTINUAR-->
                 <Button x:Name="btnLogin"
                         Command="{Binding ContinuarCommand}"
                         BorderThickness="0"
@@ -80,6 +82,38 @@
                     <Button.Template>
                         <ControlTemplate TargetType="{x:Type Button}">
                             <Border Width="150" Height="40"
+                                    CornerRadius="20"
+                                    Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <!--ACTUALIZAR DATOS DE LA API-->
+                <Button 
+                        Command="{Binding ActualizarDatosAPI}"
+                        BorderThickness="0"
+                        Content="Actualizar Base de datos"
+                        Foreground="White"
+                        FontSize="17"
+                        FontFamily="Montserrat"
+                        Cursor="Hand"                           
+                        Margin="0,40,0,0" >
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#1e88e5"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#85c1e9"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Width="auto" Height="40"
                                     CornerRadius="20"
                                     Background="{TemplateBinding Background}">
                                 <ContentPresenter VerticalAlignment="Center"

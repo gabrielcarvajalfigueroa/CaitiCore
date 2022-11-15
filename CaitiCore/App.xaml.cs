@@ -82,7 +82,7 @@ namespace CaitiCore
 
         private ResultadosAprendizajeViewModel CreateResultadosAprendizajeViewModel()
         {
-            return new ResultadosAprendizajeViewModel(new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
+            return new ResultadosAprendizajeViewModel(_sistema, new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
         }
 
         private AyudanteViewModel CreateAyudanteViewModel()
@@ -97,7 +97,7 @@ namespace CaitiCore
 
         private RecursosViewModel CreateRecursosViewModel()
         {
-            return new RecursosViewModel(new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
+            return new RecursosViewModel(_sistema, new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
         }
 
         // Fin de los POPUPS

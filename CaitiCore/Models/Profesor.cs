@@ -20,8 +20,9 @@ namespace CaitiCore.Models
 
         public List<Curso> Cursos { get; set; }
 
-        public Profesor(string nombre, string email, string telefono, string horario_atencion)
+        public Profesor(string rut, string nombre, string email, string telefono, string horario_atencion)
         {
+            RUT = rut;
             Nombre = nombre;
             Email = email;
             Telefono = telefono;

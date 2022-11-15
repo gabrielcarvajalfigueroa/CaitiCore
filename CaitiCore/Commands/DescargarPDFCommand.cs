@@ -39,7 +39,9 @@ namespace CaitiCore.Commands
 
             //Imagen del logo UCN y el título del documento.
             PdfPTable tbl = new PdfPTable(new float[] { 10f, 90f }) { HorizontalAlignment = Element.ALIGN_CENTER };
-            iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance("C:\\Users\\gcarv\\source\\repos\\CaitiCore\\CaitiCore\\Images\\UCN.png");//Cambiar según corresponda.
+            string fileName = "UCN.png";
+            string path = Path.Combine(Environment.CurrentDirectory, @"Images\", fileName);
+            iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(path);//Cambiar según corresponda.
             logo.ScalePercent(6f);
             tbl.AddCell(new PdfPCell(logo) { Border = 0 });
             tbl.AddCell(new PdfPCell(new Phrase("Planificación Didáctica")) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, Border = 0 });

@@ -53,12 +53,54 @@
                                     <DataGridTemplateColumn Header="Actividades" Width="500">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
-                                                <StackPanel Name="ElPanel" Orientation="Horizontal">
-                                                    <ComboBox x:Name="Combobox1" Width="100" />
-                                                    <Button 
-                                                            Content="+"
-                                                            Command="{Binding Path=DataContext.AgregarActividad, RelativeSource={RelativeSource AncestorType=local:Planificacion}}"/>
-                                                </StackPanel>
+                                                <ScrollViewer Name="c_dataGridScrollViewer"
+              
+              VerticalScrollBarVisibility="Auto"
+              HorizontalScrollBarVisibility="Auto">
+                                                    <DataGrid x:Name="c_dataGrid" ItemsSource="{Binding Actividades}" AutoGenerateColumns="False"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Top"
+              
+              HorizontalScrollBarVisibility="Hidden"
+              VerticalScrollBarVisibility="Hidden">
+                                                        <DataGrid.Columns>
+                                                            <DataGridTextColumn  Header="Unidad" Binding="{Binding Unidad_Tematica}" Width="50" />
+                                                            <DataGridTextColumn  Header="Tipo" Binding="{Binding Tipo_Actividad}" Width="50" />
+                                                        </DataGrid.Columns>
+                                                        
+                                                        <DataGrid.ColumnHeaderStyle>
+                                                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                                                <Setter Property="LayoutTransform">
+                                                                    <Setter.Value>
+                                                                        <TransformGroup>
+                                                                            <RotateTransform Angle="90"/>
+                                                                        </TransformGroup>
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </Style>
+                                                        </DataGrid.ColumnHeaderStyle>
+
+                                                        <DataGrid.LayoutTransform>
+                                                            <TransformGroup>
+                                                                <RotateTransform Angle="-90"/>
+                                                            </TransformGroup>
+                                                        </DataGrid.LayoutTransform>
+
+                                                        <DataGrid.CellStyle>
+                                                            <Style TargetType="{x:Type DataGridCell}">
+                                                                <Setter Property="LayoutTransform">
+                                                                    <Setter.Value>
+                                                                        <TransformGroup>
+                                                                            <RotateTransform Angle="90"/>
+                                                                        </TransformGroup>
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </Style>
+                                                        </DataGrid.CellStyle>
+
+                                                        
+                                                    </DataGrid>
+                                                </ScrollViewer>
                                             </DataTemplate>
                                         </DataGridTemplateColumn.CellTemplate>
                                     </DataGridTemplateColumn>

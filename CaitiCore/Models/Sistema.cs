@@ -16,11 +16,18 @@ namespace CaitiCore.Models
 
         Planificacion CrearPlanificacionDefault();
 
+        Profesor BuscarProfesorAPI(string RUT);
         void ActualizarPlanificacion(List<Semana> semanas);
 
         void InsertarProposito(string Proposito, Profesor profesorEnSesion, Curso cursoEnSesion);
 
         void InsertarAspAdmin(string AspAdmin, Profesor profesorEnSesion, Curso cursoEnSesion);
+
+        void InsertarAyudante(Ayudante ayudante, Profesor profesorEnSesion, Curso cursoEnSesion);
+
+        void InsertarRA(ResultadoAprendizaje resultadoAprendizaje, Profesor profesorEnSesion, Curso cursoEnSesion);
+
+        void InsertarRecurso(Recurso recurso, Profesor profesorEnSesion, Curso cursoEnSesion);
 
     }
 }
