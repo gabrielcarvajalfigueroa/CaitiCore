@@ -9,18 +9,13 @@
         xmlns:custom="clr-namespace:ModalControl;assembly=ModalControl"
         WindowState="Maximized"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Caiti" Height="450" Width="800">
     <Grid>
         <Grid.Resources>
             <!-- Estos data templates se usan para mapear las views-->
             <DataTemplate DataType="{x:Type viewmodels:InicioViewModel}">
                 <views:Inicio/>
             </DataTemplate>
-
-            <DataTemplate DataType="{x:Type viewmodels:RegistroViewModel}">
-                <views:Registro/>
-            </DataTemplate>
-
 
             <DataTemplate DataType="{x:Type viewmodels:MenuViewModel}">
                 <views:MenuView/>

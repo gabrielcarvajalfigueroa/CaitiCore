@@ -6,61 +6,73 @@
              xmlns:local="clr-namespace:CaitiCore.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Border CornerRadius="0"                    
-            BorderThickness="1"
-            Opacity="0.95">
+    <Border>
         <Border.Background>
-            <SolidColorBrush Color="#FFFF">
+            <SolidColorBrush Color="#eeeeee">
             </SolidColorBrush>
         </Border.Background>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250"/>
-                <ColumnDefinition />
+                <ColumnDefinition MaxWidth="400"/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <StackPanel Background="#233EFF">
+            <Border>
+                <Border.Background>
+                    <SolidColorBrush Color="#29b6f6"/>
+                </Border.Background>
+            </Border>
+            <Image Source="/Images/UCN.png" Grid.Column="2" Opacity="0.2"/>
+            <Grid HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Image Source="/Images/LogoLetras.png"
+                        VerticalAlignment="Center"
+                       HorizontalAlignment="Center" Width="271" Height="82" Grid.Row="0"
+                       />
                 <TextBlock
-                    Margin="0 20 0 0"
-                    Text="{Binding NombreProfesor}"
-                    Foreground="White"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    FontSize="24">
-                </TextBlock>
+                        Grid.Row="1"
+                        Text="{Binding CursoEditando}"
+                        Foreground="White"
+                        VerticalAlignment="Center"
+                        FontSize="24"
+                        Height="32"
+                        HorizontalAlignment="Center"/>
                 <TextBlock
-                    Margin="0 20 0 0"
-                    Text="{Binding CursoEditando}"
-                    Foreground="White"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    FontSize="24">
-                </TextBlock>
-                <!--Boton para volver-->
-                <Button 
-                Grid.Column="0"
-                    Margin="0,500,0,0"
-                Command="{Binding Volver}"
-                BorderThickness="0"
-                Content="Volver"
-                Foreground="White"
-                FontSize="12"
-                FontFamily="Montserrat"
-                Cursor="Hand"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Center"
-                >
+                        Grid.Row="2"
+                        Text="{Binding NombreProfesor}"
+                        Foreground="White"
+                        FontSize="24"
+                        VerticalAlignment="Top" 
+                        HorizontalAlignment="Center" 
+                        Height="32"/>
+                <Button
+                        Grid.Row="4"
+                        Command="{Binding Volver}"
+                        BorderThickness="0"
+                        Content="Volver"
+                        Foreground="White"
+                        FontSize="12"
+                        FontFamily="Montserrat"
+                        Cursor="Hand"
+                        Height="40"
+                        VerticalAlignment="Bottom" Margin="0,0,0,30">
                     <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Background" Value="#233EFF"/>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#1e88e5"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#28AEED"/>
+                                    <Setter Property="Background" Value="#85c1e9"/>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
                     <Button.Template>
-                        <ControlTemplate TargetType="Button">
+                        <ControlTemplate TargetType="{x:Type Button}">
                             <Border Width="250" Height="40"
                                         CornerRadius="20"
                                         Background="{TemplateBinding Background}">
@@ -70,10 +82,9 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-            </StackPanel>
-            <!--<Image Source="/Views/Isologo-UCN-2018.png" Margin="20,300,20,0"/>-->
-            <!--<Image Source="/Views/Escudo-UCN-Full-Color.png" Grid.Column="1" Margin="0,0,-148,0" Opacity="0.12"/>-->
-            <Grid HorizontalAlignment="Center" Grid.Column="1">
+            </Grid>
+            <!--Boton para volver-->
+            <Grid HorizontalAlignment="Center" Grid.Column="1" Grid.RowSpan="2">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -84,7 +95,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                
+
                 <!--BOTON PROPOSITO-->
                 <Button x:Name="btnProposito"
                 Command="{Binding Proposito}"
@@ -101,10 +112,10 @@
                 >
                     <Button.Style>
                         <Style TargetType="Button">
-                            <Setter Property="Background" Value="#233EFF"/>
+                            <Setter Property="Background" Value="#1e88e5"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#28AEED"/>
+                                    <Setter Property="Background" Value="#85c1e9"/>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
@@ -120,7 +131,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                
+
                 <!--BOTON RESULTADOS DE APRENDIZAJE-->
                 <Button x:Name="btnRDAprendizaje"
                 Command="{Binding RA}"
@@ -137,10 +148,10 @@
                 >
                     <Button.Style>
                         <Style TargetType="Button">
-                            <Setter Property="Background" Value="#233EFF"/>
+                            <Setter Property="Background" Value="#1e88e5"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#28AEED"/>
+                                    <Setter Property="Background" Value="#85c1e9"/>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
@@ -156,7 +167,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                
+
                 <!--BOTON AYUDANTES-->
                 <Button x:Name="btnAyudantes"
                 Command="{Binding Ayudante}"
@@ -173,10 +184,10 @@
                 >
                     <Button.Style>
                         <Style TargetType="Button">
-                            <Setter Property="Background" Value="#233EFF"/>
+                            <Setter Property="Background" Value="#1e88e5"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#28AEED"/>
+                                    <Setter Property="Background" Value="#85c1e9"/>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
@@ -192,7 +203,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                
+
                 <!--BOTON ASPECTOS ADMINISTRATIVOS-->
                 <Button x:Name="btnAspAdm"
                 Command="{Binding AspectosAdministrativos}"
@@ -209,10 +220,10 @@
                 >
                     <Button.Style>
                         <Style TargetType="Button">
-                            <Setter Property="Background" Value="#233EFF"/>
+                            <Setter Property="Background" Value="#1e88e5"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#28AEED"/>
+                                    <Setter Property="Background" Value="#85c1e9"/>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
@@ -228,7 +239,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                
+
                 <!--BOTON RECURSOS DE APRENDIZAJE-->
                 <Button x:Name="btnRecursos"
                 Command="{Binding Recursos}"
@@ -245,10 +256,10 @@
                 >
                     <Button.Style>
                         <Style TargetType="Button">
-                            <Setter Property="Background" Value="#233EFF"/>
+                            <Setter Property="Background" Value="#1e88e5"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#28AEED"/>
+                                    <Setter Property="Background" Value="#85c1e9"/>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
@@ -264,7 +275,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                
+
                 <!--BOTON PLANIFICAR CURSO-->
                 <Button x:Name="btnPlanificar"
                 Grid.Column="1"
@@ -281,10 +292,10 @@
                 >
                     <Button.Style>
                         <Style TargetType="Button">
-                            <Setter Property="Background" Value="#233EFF"/>
+                            <Setter Property="Background" Value="#1e88e5"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#28AEED"/>
+                                    <Setter Property="Background" Value="#85c1e9"/>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
@@ -300,7 +311,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                
+
                 <!--BOTON PREVISUALIZAR-->
                 <Button x:Name="btnPrevisualizar"
                 Grid.Column="1"
@@ -316,10 +327,10 @@
                 >
                     <Button.Style>
                         <Style TargetType="Button">
-                            <Setter Property="Background" Value="#233EFF"/>
+                            <Setter Property="Background" Value="#1e88e5"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#28AEED"/>
+                                    <Setter Property="Background" Value="#85c1e9"/>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
