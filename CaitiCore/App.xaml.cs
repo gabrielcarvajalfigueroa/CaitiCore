@@ -20,6 +20,7 @@ namespace CaitiCore
         private readonly Sistema _sistema;
         private readonly NavigationStore _navigationStore;
         private readonly ModalNavigationStore _modalnavigationStore;
+        
 
         public App()
         {
@@ -29,6 +30,8 @@ namespace CaitiCore
             _navigationStore = new NavigationStore();
 
             _modalnavigationStore = new ModalNavigationStore();
+
+
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -101,6 +104,8 @@ namespace CaitiCore
         }
 
         // Fin de los POPUPS
+        
+        
 
         private PlanificacionViewModel CreatePlanificacionViewModel()
         {
@@ -111,7 +116,8 @@ namespace CaitiCore
 
         private ActividadViewModel CreateActividadViewModel()
         {
-            return new ActividadViewModel(new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
+            return new ActividadViewModel((PlanificacionViewModel)_navigationStore.CurrentViewModel,
+                new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
         }
 
 

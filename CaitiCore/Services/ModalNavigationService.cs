@@ -28,5 +28,12 @@ namespace CaitiCore.Services
         {
             _navigationStore.CurrentViewModel = _createViewModel();
         }
+
+        public void Navigate(string id_semana,string id_clase)
+        {
+            _navigationStore.CurrentViewModel = _createViewModel();
+            ((ActividadViewModel)_navigationStore.CurrentViewModel).Id_Semana = id_semana;
+            ((ActividadViewModel)_navigationStore.CurrentViewModel).Id_Clase = id_clase;
+        }
     }
 }
