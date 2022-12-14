@@ -44,16 +44,12 @@ namespace CaitiCore.ViewModels
                                       ModalNavigationService ActividadView)
         {
             _listaSemanas = new ObservableCollection<Semana>(sistema._cursoEnSesion.Planificacion_Curso.Semanas);
-
-            //_listaSemanas[0].Clases[1].Actividades.Add(new Actividad("Catedra"));
-                       
-
+                                   
 
             AgregarActividad = new ModalNavigateCommand(ActividadView);
             AgregarSemana = new AgregarSemanaCommand(this);
             AgregarClase = new AgregarClaseCommand(this);
-
-            //AgregarActividad = new AgregarActividadCommand(ActividadView, this);
+            
             Guardar = new GuardarPlanificacionCommand(this, sistema);
             Volver = new NavigateCommand(CursoView);
         }

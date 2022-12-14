@@ -12,6 +12,9 @@ namespace CaitiCore.Models
     {
         public string Id_Semana { get; set; }
 
+        public ObservableCollection<Clase> Clases { get; set; }
+
+        /*
         public ObservableCollection<Clase> _clases;
         public ObservableCollection<Clase> Clases 
         {
@@ -24,7 +27,7 @@ namespace CaitiCore.Models
                 _clases = value;
                 OnPropertyChanged(nameof(Clases));
             }
-        }
+        }*/
 
         public Semana()
         {

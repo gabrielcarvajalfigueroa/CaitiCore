@@ -3,6 +3,7 @@ using CaitiCore.Models;
 using CaitiCore.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,8 @@ namespace CaitiCore.ViewModels
 {
     public class ActividadViewModel : ViewModelBase
     {
+        Sistema _sistema;
+
         private string _id_semana;
 
         public string Id_Semana
@@ -56,11 +59,32 @@ namespace CaitiCore.ViewModels
                 OnPropertyChanged(nameof(Tipo));
             }
         }
+
+        public ObservableCollection<string> Tipos { get; set; }
+
+        public ObservableCollection<ResultadoAprendizaje> RAS { get; set; }
+
         public ICommand Guardar { get; }
         public ICommand Cerrar { get; }
 
-        public ActividadViewModel(PlanificacionViewModel pvm, ModalNavigationService cerrar)
+        public ActividadViewModel(Sistema sistema,PlanificacionViewModel pvm, ModalNavigationService cerrar)
         {
+            _sistema = sistema;
+
+            RAS = new ObservableCollection<ResultadoAprendizaje>(sistema._cursoEnSesion.RAs);
+            Tipos = new ObservableCollection<string>();
+
+            Tipos.Add("AYUDANTIA");
+            Tipos.Add("CATEDRA");
+            Tipos.Add("EJERCICIOS");
+            Tipos.Add("ENTREGA_PAUTA");
+            Tipos.Add("ENTREGA_RESULTADOS");
+            Tipos.Add("EVALUACION_CATEDRA");
+            Tipos.Add("EVALUACION_CORTA");
+            Tipos.Add("LABORATORIO");
+            Tipos.Add("REVISION_EVALUACION");
+            Tipos.Add("SALIDA_A_TERRENO");
+            Tipos.Add("TALLER");            
 
             Guardar = new GuardarCommand(pvm, this);
 

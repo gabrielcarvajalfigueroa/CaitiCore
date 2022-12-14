@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -50,6 +51,8 @@ namespace CaitiCore.Models
             Clase clase = new Clase();
 
             clase.Id_Clase = "1";
+
+            clase.Actividades = new ObservableCollection<Actividad>();
           
             for(int i = 1; i <= 16; i++)
             {
@@ -215,9 +218,13 @@ namespace CaitiCore.Models
                 if(datoAPI.RUT_PROFESOR == RUT)
                 {
                     profesor.RUT = datoAPI.RUT_PROFESOR;
-                    profesor.Nombre = datoAPI.NOMBRES + " " + datoAPI.AP_PATERNO; 
+                    profesor.Nombre = datoAPI.NOMBRES + " " + datoAPI.AP_PATERNO;
 
-                    profesor.Cursos.Add(new Curso(datoAPI.TITULO, "carrerapend", "coordinador_pend", datoAPI.NRC, CrearPlanificacionDefault()));
+                    Curso curso = new Curso(datoAPI.TITULO, "carrerapend", "coordinador_pend", datoAPI.NRC, CrearPlanificacionDefault());
+
+                    curso.RAs = new List<ResultadoAprendizaje>();
+
+                    profesor.Cursos.Add(curso);
                 }
             }
 

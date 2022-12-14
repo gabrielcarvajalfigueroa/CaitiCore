@@ -15,27 +15,52 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="400" />
         </Grid.ColumnDefinitions>
 
         <TextBlock
             Grid.Row="0"
-            HorizontalAlignment="Center"
-            FontSize="28"
-            Text="Registrar Actividad" />
+            Text="Editor de Actividades"
+            FontSize="20"
+            Margin="10 0 0 0"
+            Background="LightGoldenrodYellow"/>
 
-        <StackPanel Grid.Row="1" Margin="0 20 0 0">
-            <StackPanel>
-                <TextBlock Text="Ingrese la actividad:" />
-                <TextBox Text="{Binding Tipo,UpdateSourceTrigger=PropertyChanged}" />
-            </StackPanel>
-
+        <StackPanel Grid.Row="1" Margin="0 20 0 0" Orientation="Horizontal">
+            <TextBlock Text="Tipo de actividad:" />
+            <ComboBox 
+                ItemsSource="{Binding Tipos, UpdateSourceTrigger=PropertyChanged}"
+                SelectedValue="{Binding Tipo, UpdateSourceTrigger=PropertyChanged}"
+                MinWidth="80"
+                Margin="10 0 0 0"/>
         </StackPanel>
 
+        <StackPanel Grid.Row="2">
+            <TextBlock Text="Unidades Tematicas:"/>
+            <TextBox Margin="10"
+                     Height="100"
+                     TextWrapping="Wrap" 
+                     AcceptsReturn="True"/>
+        </StackPanel>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal">
+        <StackPanel Grid.Row="3">
+            <TextBlock Text="Resultados de Aprendizaje:"/>
+            <DataGrid Margin="10"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Agregar Resultado de Aprendizaje:"/>
+                <ComboBox 
+                ItemsSource="{Binding RAS, UpdateSourceTrigger=PropertyChanged}"
+                DisplayMemberPath="Contenido"
+                MinWidth="80"
+                Margin="10 0 0 0"/>
+                <Button Content="+"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal">
             <Button
             Grid.Row="2"
             Margin="10 20 10 0"

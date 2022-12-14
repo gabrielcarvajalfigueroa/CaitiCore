@@ -116,7 +116,7 @@ namespace CaitiCore
 
         private ActividadViewModel CreateActividadViewModel()
         {
-            return new ActividadViewModel((PlanificacionViewModel)_navigationStore.CurrentViewModel,
+            return new ActividadViewModel(_sistema,(PlanificacionViewModel)_navigationStore.CurrentViewModel,
                 new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
         }
 
