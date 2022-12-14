@@ -1,4 +1,5 @@
 ﻿using CaitiCore.Commands;
+using CaitiCore.Models;
 using CaitiCore.Services;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,26 @@ namespace CaitiCore.ViewModels
 {
     public class RecursosViewModel : ViewModelBase
     {
-        public ObservableCollection<string> _recursos;
+
+        private string _contenidoVM;
+
+        public string ContenidoVM
+        {
+            get
+            {
+                return _contenidoVM;
+            }
+            set
+            {
+                _contenidoVM = value;
+                OnPropertyChanged(nameof(ContenidoVM));
+            }
+        }
+
+        public ObservableCollection<Recurso> _recursos;
 
 
-        public ObservableCollection<string> Recursos
+        public ObservableCollection<Recurso> Recursos
         {
             get
             {
@@ -24,19 +41,15 @@ namespace CaitiCore.ViewModels
 
         }
 
+        public ICommand Guardar { get; }
+
         public ICommand Cerrar { get; }
 
-        public RecursosViewModel(ModalNavigationService cerrar)
+        public RecursosViewModel(Sistema sistema, ModalNavigationService cerrar)
         {
-            string[] recursos = { "Captura.de.Requerimientos.Diagramas.de.Actividades.pptx (2020-05-08)", "https://bestbipractices.wordpress.com/2013/07/10/breve-resumen-sobre-scrum/ (2020-05-18) "};
+            _recursos = new ObservableCollection<Recurso>(sistema._cursoEnSesion.Recursos);
 
-
-            List<string> Recursos = new List<string>(recursos);
-
-
-            _recursos = new ObservableCollection<string>(Recursos);
-
-
+            Guardar = new AgregarRecursoCommand(this, sistema);
             Cerrar = new CloseModalCommand(cerrar);
         }
 

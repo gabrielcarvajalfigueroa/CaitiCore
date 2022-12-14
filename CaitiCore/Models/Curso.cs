@@ -26,6 +26,10 @@ namespace CaitiCore.Models
 
         public string Tipo { get; set; }
 
+        public string Asp_Administrativo { get; set; }
+
+        public List<Recurso> Recursos { get; set; }
+
         public OrganizacionSemestral Organizacion { get; set; }
 
         public List<Ayudante> Ayudantes { get; set; }

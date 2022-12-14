@@ -8,6 +8,8 @@ namespace CaitiCore.Models
 {
     public class Profesor
     {
+        public string RUT { get; set; }
+
         public string Nombre { get; set; }
 
         public string Email { get; set; }
@@ -18,8 +20,9 @@ namespace CaitiCore.Models
 
         public List<Curso> Cursos { get; set; }
 
-        public Profesor(string nombre, string email, string telefono, string horario_atencion)
+        public Profesor(string rut, string nombre, string email, string telefono, string horario_atencion)
         {
+            RUT = rut;
             Nombre = nombre;
             Email = email;
             Telefono = telefono;

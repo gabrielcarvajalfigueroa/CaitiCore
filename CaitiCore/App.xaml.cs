@@ -20,6 +20,7 @@ namespace CaitiCore
         private readonly Sistema _sistema;
         private readonly NavigationStore _navigationStore;
         private readonly ModalNavigationStore _modalnavigationStore;
+        
 
         public App()
         {
@@ -29,6 +30,8 @@ namespace CaitiCore
             _navigationStore = new NavigationStore();
 
             _modalnavigationStore = new ModalNavigationStore();
+
+
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -77,12 +80,12 @@ namespace CaitiCore
         // Inicio de los POPUPS
         private PropositoViewModel CreatePropositoViewModel()
         {
-            return new PropositoViewModel(new ModalNavigationService(_modalnavigationStore,CreateCursoViewModel));// La segunda funcion no sirve de nada es Para que no quede en null el atributo de la clase o se cae
+            return new PropositoViewModel(_sistema, new ModalNavigationService(_modalnavigationStore,CreateCursoViewModel));// La segunda funcion no sirve de nada es Para que no quede en null el atributo de la clase o se cae
         }
 
         private ResultadosAprendizajeViewModel CreateResultadosAprendizajeViewModel()
         {
-            return new ResultadosAprendizajeViewModel(new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
+            return new ResultadosAprendizajeViewModel(_sistema, new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
         }
 
         private AyudanteViewModel CreateAyudanteViewModel()
@@ -92,15 +95,17 @@ namespace CaitiCore
 
         private AspAdministrativosViewModel CreateAspAdministrativosViewModel()
         {
-            return new AspAdministrativosViewModel(new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
+            return new AspAdministrativosViewModel(_sistema, new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
         }
 
         private RecursosViewModel CreateRecursosViewModel()
         {
-            return new RecursosViewModel(new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
+            return new RecursosViewModel(_sistema, new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
         }
 
         // Fin de los POPUPS
+        
+        
 
         private PlanificacionViewModel CreatePlanificacionViewModel()
         {
@@ -111,7 +116,8 @@ namespace CaitiCore
 
         private ActividadViewModel CreateActividadViewModel()
         {
-            return new ActividadViewModel(new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
+            return new ActividadViewModel(_sistema,(PlanificacionViewModel)_navigationStore.CurrentViewModel,
+                new ModalNavigationService(_modalnavigationStore, CreateCursoViewModel));
         }
 
 

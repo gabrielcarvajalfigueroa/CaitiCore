@@ -1,4 +1,5 @@
-﻿using CaitiCore.Services;
+﻿using CaitiCore.Models;
+using CaitiCore.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,16 @@ namespace CaitiCore.Commands
 
         public override void Execute(object parameter)
         {
-            _modalnavigationService.Navigate();
+            if(parameter == null)
+            {
+                _modalnavigationService.Navigate();
+            }
+            else
+            {
+                Clase clase = (Clase)parameter;                
+                _modalnavigationService.Navigate(clase.Id_Semana,clase.Id_Clase);
+            }
+            
         }
     }
 }

@@ -13,6 +13,21 @@ namespace CaitiCore.ViewModels
 {
     public class ResultadosAprendizajeViewModel : ViewModelBase
     {
+
+        private string _contenidoVM; 
+
+        public string ContenidoVM
+        {
+            get
+            {
+                return _contenidoVM;
+            }
+            set
+            {
+                _contenidoVM = value;
+                OnPropertyChanged(nameof(ContenidoVM));
+            }
+        }
         public ObservableCollection<ResultadoAprendizaje> _ras;
 
 
@@ -25,18 +40,16 @@ namespace CaitiCore.ViewModels
 
         }
 
-        public ICommand Cerrar { get;  }
 
-        public ResultadosAprendizajeViewModel(ModalNavigationService cerrar)
+        public ICommand Guardar { get; }
+        public ICommand Cerrar { get; }
+
+        public ResultadosAprendizajeViewModel(Sistema sistema, ModalNavigationService cerrar)
         {
-            ResultadoAprendizaje[] resultados = { new ResultadoAprendizaje("1", "Comprender los conceptos asociados a los procesos de la Ingeniería de Software"), new ResultadoAprendizaje("2", "Seleccionar el modelo de proceso más adecuado para la aplicación a desarrollar") };
+            
+            _ras = new ObservableCollection<ResultadoAprendizaje>(sistema._cursoEnSesion.RAs);
 
-
-            List<ResultadoAprendizaje> resultadoAprendizajes = new List<ResultadoAprendizaje>(resultados);
-
-
-            _ras = new ObservableCollection<ResultadoAprendizaje>(resultadoAprendizajes);
-
+            Guardar = new AgregarResultadoAprendizajeCommand(this, sistema);
             Cerrar = new CloseModalCommand(cerrar);
         }
 

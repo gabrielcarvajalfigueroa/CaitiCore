@@ -102,6 +102,12 @@
                                             DisplayMemberBinding="{Binding Nombre_Curso}"
                                             >
                             </GridViewColumn>
+
+                            <!--NRC-->
+                            <GridViewColumn Header="NRC" 
+                                            DisplayMemberBinding="{Binding Codigo_NRC}"
+                                            >
+                            </GridViewColumn>
                             <!--BOTON PARA EDITAR CURSO-->
                             <GridViewColumn>
                                 <GridViewColumn.CellTemplate>

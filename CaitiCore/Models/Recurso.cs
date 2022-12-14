@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace CaitiCore.Models
 {
-    public class ResultadoAprendizaje
+    public class Recurso 
     {
-        public ResultadoAprendizaje(string contenido)
-        {            
+        public Recurso(string contenido)
+        {
             Contenido = contenido;
-        }        
-        public string Contenido { get; set; }
+        }
 
+        public string Contenido { get; set; }
     }
 }

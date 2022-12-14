@@ -23,8 +23,14 @@ namespace CaitiCore.Commands
         {
             Ayudante ayudante = new Ayudante(ayudVM.Nombre, ayudVM.Correo, ayudVM.Telefono, ayudVM.Horario_Atencion);
 
-            // sistemainsertarayudante
-            
+            // Guarda en el sistema
+            sistema.InsertarAyudante(ayudante, sistema._profesorEnSesion, sistema._cursoEnSesion);
+
+
+            // Guarda en la sesion
+            sistema._cursoEnSesion.Ayudantes.Add(ayudante);
+
+            // Actualiza el datagrid
             ayudVM.Ayudantes.Add(ayudante);
             
         }

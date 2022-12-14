@@ -22,9 +22,7 @@ namespace CaitiCore.Commands
 
         public override void Execute(object parameter)
         {
-            _sistema._cursoEnSesion = (Curso)parameter;
-            Debug.WriteLine("hola");
-            Debug.WriteLine(_sistema._cursoEnSesion.Nombre_Curso);
+            _sistema._cursoEnSesion = (Curso)parameter;            
             _cursoViewNavigationService.Navigate();
         }
     }

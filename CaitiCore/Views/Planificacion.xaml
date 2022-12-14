@@ -29,35 +29,102 @@
             
         </StackPanel>
 
-        <DataGrid Grid.Row="1" x:Name="dataGrid1" ItemsSource="{Binding ListaSemanas}"  AutoGenerateColumns="False" CanUserAddRows="false">
+        <DataGrid Grid.Row="1" x:Name="dataGrid1" ItemsSource="{Binding ListaSemanas, UpdateSourceTrigger=PropertyChanged}"  AutoGenerateColumns="False" CanUserAddRows="false">
 
             <DataGrid.Columns>
                 <!--COLUMNA SEMANA-->
                 <DataGridTemplateColumn Header="Semana">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ItemsControl ItemsSource="{Binding Id_Semana}" HorizontalAlignment="Center" />
+                            <!--<ItemsControl ItemsSource="{Binding Id_Semana}" HorizontalAlignment="Center" />-->                            
+                            <StackPanel>
+                                <TextBlock Text="{Binding Id_Semana}"/>
+                                <Button Content="+"
+                                        Command="{Binding Path=DataContext.AgregarSemana, RelativeSource={RelativeSource AncestorType=local:Planificacion}}"
+                                        Margin="0 10 0 0"/>
+                            </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="Informacion" Width="*">
                     <DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
-                            <DataGrid x:Name="dataGridInner" ItemsSource="{Binding Clases}"  AutoGenerateColumns="False"
-                                      CanUserAddRows="True" >
+                            <DataGrid x:Name="dataGridInner" ItemsSource="{Binding Clases, UpdateSourceTrigger=PropertyChanged}"  AutoGenerateColumns="False"
+                                      CanUserAddRows="False" >
                                 <DataGrid.Columns>
-                                    <!--COLUMNA CLASE-->
-                                    <DataGridTextColumn  Header="Clase" Binding="{Binding Id_Clase}" Width="50" />
-
+                                    <!--COLUMNA CLASE-->                                    
+                                    <DataGridTemplateColumn Header="Clase">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                    <TextBlock Text="{Binding Id_Clase}"/>
+                                                    <Button Content="+"
+                                                    Command="{Binding Path=DataContext.AgregarClase, RelativeSource={RelativeSource AncestorType=local:Planificacion}}"
+                                                    CommandParameter="{Binding ElementName=dataGridInner, Path=DataContext}"
+                                                    Margin="0 10 0 0"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
                                     <!--COLUMNA ACTIVIDADES-->
                                     <DataGridTemplateColumn Header="Actividades" Width="500">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
-                                                <StackPanel Name="ElPanel" Orientation="Horizontal">
-                                                    <ComboBox x:Name="Combobox1" Width="100" />
-                                                    <Button 
-                                                            Content="+"
-                                                            Command="{Binding Path=DataContext.AgregarActividad, RelativeSource={RelativeSource AncestorType=local:Planificacion}}"/>
+
+                                                <StackPanel 
+                                                            Width="auto">
+                                                    <DataGrid x:Name="c_dataGrid" ItemsSource="{Binding Actividades}" AutoGenerateColumns="False"
+                                                          HorizontalAlignment="Left"
+                                                          VerticalAlignment="Top"
+                                                          Width="auto"
+                                                          HorizontalScrollBarVisibility="Hidden"
+                                                          VerticalScrollBarVisibility="Hidden"> 
+                                                    <DataGrid.Columns>
+                                                            <DataGridTextColumn  Header="Unidad" Binding="{Binding Unidad_Tematica}" Width="50" />
+                                                            <DataGridTextColumn  Header="Tipo" Binding="{Binding Tipo_Actividad}" Width="50" />
+                                                        </DataGrid.Columns>
+                                                        
+                                                        <DataGrid.ColumnHeaderStyle>
+                                                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                                                <Setter Property="LayoutTransform">
+                                                                    <Setter.Value>
+                                                                        <TransformGroup>
+                                                                            <RotateTransform Angle="90"/>
+                                                                        </TransformGroup>
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </Style>
+                                                        </DataGrid.ColumnHeaderStyle>
+
+                                                        <DataGrid.LayoutTransform>
+                                                            <TransformGroup>
+                                                                <RotateTransform Angle="-90"/>
+                                                            </TransformGroup>
+                                                        </DataGrid.LayoutTransform>
+
+                                                        <DataGrid.CellStyle>
+                                                            <Style TargetType="{x:Type DataGridCell}">
+                                                                <Setter Property="LayoutTransform">
+                                                                    <Setter.Value>
+                                                                        <TransformGroup>
+                                                                            <RotateTransform Angle="90"/>
+                                                                        </TransformGroup>
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </Style>
+                                                        </DataGrid.CellStyle>
+
+                                                        
+                                                    </DataGrid>
+
+                                                    <Button
+                                                        Content="+"
+                                                        Command="{Binding Path=DataContext.AgregarActividad, RelativeSource={RelativeSource AncestorType=local:Planificacion}}"
+                                                        CommandParameter="{Binding Path=DataContext, RelativeSource={RelativeSource Mode=Self}}"
+                                                        Width="15"
+                                                        Height="30"
+                                                        HorizontalAlignment="Right"
+                                                        Margin="0 10 0 0"/>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </DataGridTemplateColumn.CellTemplate>

@@ -34,7 +34,7 @@ namespace CaitiCore.Commands
 
             foreach (var profesor in Profesores)
             {
-                if(profesor.Nombre == _inicioViewModel.NombreUsuario)
+                if(profesor.RUT == _inicioViewModel.RUT)
                 {
                     _sistema._profesorEnSesion = profesor;
 
@@ -47,8 +47,22 @@ namespace CaitiCore.Commands
 
             if (!_existProfessor)
             {
-                MessageBox.Show("El profesor no se encuentra Registrado", "Registrar Usuario",
-               MessageBoxButton.OK, MessageBoxImage.Information);
+
+                Profesor profesorAPI = _sistema.BuscarProfesorAPI(_inicioViewModel.RUT);
+
+                if(profesorAPI.RUT == "-1")
+                {
+                    MessageBox.Show("El profesor no se encuentra Registrado", "Registrar Usuario",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    _sistema._profesorEnSesion = profesorAPI;
+
+                    _menuViewNavigationService.Navigate();
+                    _existProfessor = true;
+                }
+                
             }
 
         }
