@@ -60,18 +60,39 @@ namespace CaitiCore.ViewModels
             }
         }
 
+        private string _raElegido;
+
+        public string RaElegido
+        {
+            get
+            {
+                return _raElegido;
+            }
+            set
+            {
+                _raElegido = value;
+                OnPropertyChanged(nameof(RaElegido));
+            }
+        }
+
         public ObservableCollection<string> Tipos { get; set; }
 
         public ObservableCollection<ResultadoAprendizaje> RAS { get; set; }
 
+        public ObservableCollection<ResultadoAprendizaje> RASActividad { get; set; }
+
         public ICommand Guardar { get; }
         public ICommand Cerrar { get; }
+
+        public ICommand AddRA { get; }
 
         public ActividadViewModel(Sistema sistema,PlanificacionViewModel pvm, ModalNavigationService cerrar)
         {
             _sistema = sistema;
 
             RAS = new ObservableCollection<ResultadoAprendizaje>(sistema._cursoEnSesion.RAs);
+            RASActividad = new ObservableCollection<ResultadoAprendizaje>();
+            
             Tipos = new ObservableCollection<string>();
 
             Tipos.Add("AYUDANTIA");
@@ -88,7 +109,9 @@ namespace CaitiCore.ViewModels
 
             Guardar = new GuardarCommand(pvm, this);
 
-            Cerrar = new CloseModalCommand(cerrar);
+            Cerrar = new CloseModalCommand(cerrar);                           
+            
+            AddRA = new AddRACommand(this);
         }
 
         public class GuardarCommand : CommandBase
@@ -108,6 +131,26 @@ namespace CaitiCore.ViewModels
                 int idS = int.Parse(ACTVM.Id_Semana) - 1;
                 int idC = int.Parse(ACTVM.Id_Clase) - 1;
                 PVM.ListaSemanas[idS].Clases[idC].Actividades.Add(new Actividad(ACTVM.Tipo));
+
+                ACTVM.Cerrar.Execute(null);
+               
+            }
+        }
+        public class AddRACommand : CommandBase
+        {
+            ActividadViewModel ACTVM;
+
+            public AddRACommand(ActividadViewModel aCTVM)
+            {
+                ACTVM = aCTVM;
+            }
+
+            public override void Execute(object parameter)
+            {
+                if (parameter != null)
+                {
+                    ACTVM.RASActividad.Add(((ResultadoAprendizaje)parameter));
+                }
             }
         }
     }

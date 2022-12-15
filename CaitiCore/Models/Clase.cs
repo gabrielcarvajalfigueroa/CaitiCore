@@ -23,7 +23,7 @@ namespace CaitiCore.Models
 
         public string Fecha_Planificada { get; set; }
 
-        public string Fecha_Programada { get; set; }
+        public string Fecha_Realizada { get; set; }
 
         public bool Progreso { get; set; }
 
