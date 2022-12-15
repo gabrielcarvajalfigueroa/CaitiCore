@@ -34,7 +34,7 @@ namespace CaitiCore.Commands
                 PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(sfd.FileName, FileMode.Create));
                 var pe = new PageEventHelper();
                 writer.PageEvent = pe;
-                pe.Title = "Planificacion Didactica";
+                pe.Title = "Planificacion Didactica";                
                 doc.Open();
                 doc = generarPDF(curso, doc);
                 doc.Close();
@@ -237,10 +237,15 @@ namespace CaitiCore.Commands
             itemix.AddCell(new PdfPCell(new Phrase("relleno")));
             doc.Add(itemix);
             doc.Add(espacio);
+            
 
             PdfPTable itemx = new PdfPTable(1);
             itemx.AddCell(new PdfPCell(new Phrase("X. Recursos de Aprendizaje")) { BackgroundColor = new BaseColor(0, 166, 255) });
-            itemx.AddCell(new PdfPCell(new Phrase("relleno")));
+            
+            foreach (Recurso recurso in curso.Recursos)
+            {
+                itemx.AddCell(new PdfPCell(new Phrase(recurso.Contenido)));
+            }            
             doc.Add(itemx);
             doc.Add(espacio);
 
