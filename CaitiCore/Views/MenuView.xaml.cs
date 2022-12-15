@@ -25,4 +25,5 @@ namespace CaitiCore.Views
             InitializeComponent();
         }
     }
+
 }

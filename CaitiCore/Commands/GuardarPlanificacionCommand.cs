@@ -25,7 +25,11 @@ namespace CaitiCore.Commands
 
             List<Semana> semanas = planificacionViewModel._listaSemanas.ToList();
 
+            // Actualiza el json
             sistema.ActualizarPlanificacion(semanas);
+
+            // Actualiza la app
+            sistema._cursoEnSesion.Planificacion_Curso.Semanas = semanas;
         }
     }
 }

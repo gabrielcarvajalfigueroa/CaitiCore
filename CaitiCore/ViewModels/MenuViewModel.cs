@@ -27,7 +27,22 @@ namespace CaitiCore.ViewModels
                 OnPropertyChanged(nameof(NombreProfesor));
             }
         }
-        
+
+        private Profesor _profesor; // Nombre del profesor que esta en sesion
+
+        public Profesor Profesor
+        {
+            get
+            {
+                return _profesor;
+            }
+            set
+            {
+                _profesor = value;
+                OnPropertyChanged(nameof(Profesor));
+            }
+        }
+
         public ObservableCollection<Curso> _cursosProfeEnSesion;
 
 
@@ -83,6 +98,7 @@ namespace CaitiCore.ViewModels
                              
         {
             _nombreProfesor = sistema._profesorEnSesion.Nombre;
+            _profesor = sistema._profesorEnSesion;
 
             _cursosProfeEnSesion = new ObservableCollection<Curso>(sistema._profesorEnSesion.Cursos);            
 

@@ -74,12 +74,14 @@ namespace CaitiCore.Commands
         {
             base.OnStartPage(writer, document);
             Rectangle pageSize = document.PageSize;
-            
-            string fileName = "UCN.png";
-            string path = Path.Combine(Environment.CurrentDirectory, @"Images\", fileName);
-            iTextSharp.text.Image imghead = iTextSharp.text.Image.GetInstance(path);
-            imghead.SetAbsolutePosition(0, 0);
-            cb.AddImage(imghead);
+
+            string path = Path.Combine(Environment.CurrentDirectory, @"Images\", "UCN.png");
+            Image logo = Image.GetInstance(path);
+            logo.SetAbsolutePosition(95f, 560f);
+            logo.ScaleAbsolute(50f, 50f);
+            document.Add(logo);
+
+
             if (Title != string.Empty)
             {
                 cb.BeginText();
@@ -87,27 +89,6 @@ namespace CaitiCore.Commands
                 cb.SetTextMatrix(pageSize.GetRight(600), pageSize.GetTop(40));
                 cb.ShowText(Title);
                 cb.EndText();
-            }
-            if (HeaderLeft + HeaderRight != string.Empty)
-            {
-                PdfPTable HeaderTable = new PdfPTable(2);
-                HeaderTable.DefaultCell.VerticalAlignment = Element.ALIGN_MIDDLE;
-                HeaderTable.TotalWidth = pageSize.Width - 80;
-                HeaderTable.SetWidthPercentage(new float[] { 45, 45 }, pageSize);
-
-                PdfPCell HeaderLeftCell = new PdfPCell(new Phrase(8, HeaderLeft, HeaderFont));
-                HeaderLeftCell.Padding = 5;
-                HeaderLeftCell.PaddingBottom = 8;
-                HeaderLeftCell.BorderWidthRight = 0;
-                HeaderTable.AddCell(HeaderLeftCell);
-                PdfPCell HeaderRightCell = new PdfPCell(new Phrase(8, HeaderRight, HeaderFont));
-                HeaderRightCell.HorizontalAlignment = PdfPCell.ALIGN_RIGHT;
-                HeaderRightCell.Padding = 5;
-                HeaderRightCell.PaddingBottom = 8;
-                HeaderRightCell.BorderWidthLeft = 0;
-                HeaderTable.AddCell(HeaderRightCell);
-                cb.SetRgbColorFill(0, 0, 0);
-                HeaderTable.WriteSelectedRows(0, -1, pageSize.GetLeft(40), pageSize.GetTop(50), cb);
             }
         }
 
@@ -121,10 +102,10 @@ namespace CaitiCore.Commands
             cb.SetRgbColorFill(100, 100, 100);
             cb.BeginText();
             cb.SetFontAndSize(bf, 8);
-            cb.SetTextMatrix(pageSize.GetLeft(40),pageSize.GetBottom(30));
+            cb.SetTextMatrix(pageSize.GetLeft(450), pageSize.GetBottom(30));
             cb.ShowText(text);
             cb.EndText();
-            cb.AddTemplate(template, pageSize.GetLeft(40) + len, pageSize.GetBottom(30));
+            cb.AddTemplate(template, pageSize.GetLeft(450) + len, pageSize.GetBottom(30));
             cb.BeginText();
             cb.SetFontAndSize(bf, 8);
             cb.EndText();
