@@ -34,7 +34,7 @@ namespace CaitiCore.Commands
             //PVM._listaSemanas[0].Id_Semana = "sdd"; //.Clases[0].Actividades.Add(new Actividad("xdddddddddd"));            
             PVM._listaSemanas[0] = semana;
             PVM._listaSemanas[2].Clases[0].Actividades = new ObservableCollection<Actividad>();
-            PVM._listaSemanas[2].Clases[0].Actividades.Add(new Actividad("sxsd"));
+            PVM._listaSemanas[2].Clases[0].Actividades.Add(new Actividad("sxsd",""));
             //PVM._listaSemanas[1] = semana;
             Debug.WriteLine(PVM.ListaSemanas[0].Id_Semana);
             //PVM._listaSemanas.Add(new Semana());

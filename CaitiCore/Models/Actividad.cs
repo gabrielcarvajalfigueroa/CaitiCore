@@ -9,9 +9,10 @@ namespace CaitiCore.Models
     public class Actividad
     {
         // cons de testeo
-        public Actividad(string tipo)
+        public Actividad(string tipo, string descripcion)
         {
             Tipo_Actividad = tipo;
+            Descripcion_Actividad = descripcion;
         }
 
         public List<ResultadoAprendizaje> Resultado_Aprendizaje { get; set; }

@@ -5,6 +5,7 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -34,10 +35,11 @@ namespace CaitiCore.Commands
                 PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(sfd.FileName, FileMode.Create));
                 var pe = new PageEventHelper();
                 writer.PageEvent = pe;
-                pe.Title = "Planificacion Didactica";
+                pe.Title = "Planificación Didáctica";
+                pe.HeaderFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16); 
                 doc.Open();
                 doc = generarPDF(curso, doc);
-                doc.Close();
+                doc.Close();               
             }
 
         }
@@ -136,15 +138,15 @@ namespace CaitiCore.Commands
             itemiii.AddCell(new PdfPCell(new Phrase("Coordinador(a):")));
             itemiii.AddCell(new PdfPCell(new Phrase(curso.Coordinador)));//Ejemplo
             itemiii.AddCell(new PdfPCell(new Phrase("Docente(s):")));
-            itemiii.AddCell(new PdfPCell(new Phrase("nose de donde se saca")));//Ejemplo
+            itemiii.AddCell(new PdfPCell(new Phrase("Bodoque")));//Ejemplo
             doc.Add(itemiii);
             itemiii = new PdfPTable(new float[] { 10f, 20f, 10f, 20f, 10f, 30f });
             itemiii.AddCell(new PdfPCell(new Phrase("Email:")));
-            itemiii.AddCell(new PdfPCell(new Phrase("nose de donde se saca")));//Ejemplo
+            itemiii.AddCell(new PdfPCell(new Phrase("Bodoque@ucn.cl")));//Ejemplo
             itemiii.AddCell(new PdfPCell(new Phrase("Teléfono:")));
-            itemiii.AddCell(new PdfPCell(new Phrase("nose de donde se saca")));//Ejemplo
+            itemiii.AddCell(new PdfPCell(new Phrase("93384")));//Ejemplo
             itemiii.AddCell(new PdfPCell(new Phrase("Horario de atención:")));
-            itemiii.AddCell(new PdfPCell(new Phrase("nose de donde se saca")));//Ejemplo
+            itemiii.AddCell(new PdfPCell(new Phrase("Lunes bloque B")));//Ejemplo
             doc.Add(itemiii);
             doc.Add(espacio);
 
@@ -152,11 +154,12 @@ namespace CaitiCore.Commands
             PdfPTable itemiv = new PdfPTable(1);
             itemiv.AddCell(new PdfPCell(new Phrase("IV. Identificación Ayudantes", whiteFont)) { BackgroundColor = new BaseColor(93, 118, 242) });
             doc.Add(itemiv);
-            itemiv = new PdfPTable(new float[] { 10f, 90f });
+            
             foreach (Ayudante ayudante in curso.Ayudantes)
             {
+                itemiv = new PdfPTable(new float[] { 10f, 90f });
                 itemiv.AddCell(new PdfPCell(new Phrase("Ayudante(s): ")));
-                doc.Add(itemiv);
+                //doc.Add(itemiv);
                 itemiv.AddCell(new PdfPCell(new Phrase(ayudante.Nombre)));//Ejemplo
                 doc.Add(itemiv);
                 itemiv = new PdfPTable(new float[] { 10f, 20f, 10f, 20f, 10f, 30f });
@@ -194,19 +197,35 @@ namespace CaitiCore.Commands
             PdfPTable itemvii = new PdfPTable(1);
             itemvii.AddCell(new PdfPCell(new Phrase("VII. Detalle Planificación Didáctica", whiteFont)) { BackgroundColor = new BaseColor(93, 118, 242) });
             doc.Add(itemvii);
+            Random rnd = new Random();// comedia pura
             foreach (Semana semana in curso.Planificacion_Curso.Semanas)
             {
                 foreach (Clase clase in semana.Clases)
                 {
                     
-                    
+
                     itemvii = new PdfPTable(new float[] { 20f, 80f });
                     itemvii.AddCell(new PdfPCell(new Phrase("Resultados de Aprendizaje", boldFont)));
-                    itemvii.AddCell(new PdfPCell(new Phrase("pend")));
+                    itemvii.AddCell(new PdfPCell(new Phrase(curso.RAs[rnd.Next(curso.RAs.Count())].Contenido)));
                     itemvii.AddCell(new PdfPCell(new Phrase("Unidades Temáticas", boldFont)));
-                    itemvii.AddCell(new PdfPCell(new Phrase("pend")));
+                    itemvii.AddCell(new PdfPCell(new Phrase("")));
                     itemvii.AddCell(new PdfPCell(new Phrase("Semana/Sesión/Fecha", boldFont)));
-                    itemvii.AddCell(new PdfPCell(new Phrase("Semana " + clase.Id_Semana +" Clase " + clase.Id_Clase + " Fecha Planificada " + clase.Fecha_Planificada + " Fecha Realizada " + clase.Fecha_Realizada)));
+                    var cultureInfo = new CultureInfo("en-US");
+                    
+                    if(clase.Fecha_Planificada != null && clase.Fecha_Realizada != null)
+                    {
+                        var dateTime = DateTime.Parse(clase.Fecha_Planificada, cultureInfo,
+                                                    DateTimeStyles.NoCurrentDateDefault);
+                        var dateTime2 = DateTime.Parse(clase.Fecha_Planificada, cultureInfo,
+                                                    DateTimeStyles.NoCurrentDateDefault);
+                        itemvii.AddCell(new PdfPCell(new Phrase("Semana " + clase.Id_Semana + " Clase " + clase.Id_Clase + " Fecha Planificada: " + dateTime.ToString("yyyy-MM-dd") + " Fecha Realizada: " + dateTime2.ToString("yyyy-MM-dd"))));
+                    }
+                    else
+                    {
+                       
+                        itemvii.AddCell(new PdfPCell(new Phrase("Semana " + clase.Id_Semana + " Clase " + clase.Id_Clase + " Fecha Planificada: " + clase.Fecha_Planificada + " Fecha Realizada: " + clase.Fecha_Realizada)));
+                    }
+                    
                     itemvii.AddCell(new PdfPCell(new Phrase("Corresponde a", boldFont)));
                     itemvii.AddCell(new PdfPCell(new Phrase()));
                     doc.Add(itemvii);
@@ -224,7 +243,7 @@ namespace CaitiCore.Commands
                         itemvii.AddCell(new PdfPCell(new Phrase("H.Indirectas", whiteFont)) { BackgroundColor = new BaseColor(93, 118, 242) });
                         itemvii.AddCell(new PdfPCell(new Phrase("x")));
                         itemvii.AddCell(new PdfPCell(new Phrase(" ")));
-                        itemvii.AddCell(new PdfPCell(new Phrase(" ")));
+                        itemvii.AddCell(new PdfPCell(new Phrase(actividad.Descripcion_Actividad)));
                         itemvii.AddCell(new PdfPCell(new Phrase(" ")));
                         itemvii.AddCell(new PdfPCell(new Phrase(" ")));
                         itemvii.AddCell(new PdfPCell(new Phrase(" ")));
@@ -249,10 +268,17 @@ namespace CaitiCore.Commands
             itemviii = new PdfPTable(new float[] { 60f, 20f, 20f });
             itemviii.AddCell(new PdfPCell(new Phrase("Instrumento de evaluacion", whiteFont)) { BackgroundColor = new BaseColor(93, 118, 242) });
             itemviii.AddCell(new PdfPCell(new Phrase("Ponderacion(%)", whiteFont)) { BackgroundColor = new BaseColor(93, 118, 242) });
-            itemviii.AddCell(new PdfPCell(new Phrase("Fecha", whiteFont)) { BackgroundColor = new BaseColor(93, 118, 242) });            
+            itemviii.AddCell(new PdfPCell(new Phrase("Fecha", whiteFont)) { BackgroundColor = new BaseColor(93, 118, 242) });
+            doc.Add(itemviii);
             foreach (ResultadoAprendizaje ras in curso.RAs)
             {
+                itemviii = new PdfPTable(1);
                 itemviii.AddCell(new PdfPCell(new Phrase(ras.Contenido, boldFont)));
+                doc.Add(itemviii);
+                itemviii = new PdfPTable(new float[] { 60f, 20f, 20f });
+                itemviii.AddCell(new PdfPCell(new Phrase("(SUMATIVA y FORMATIVA) Prueba Cátedra 1 ")));
+                itemviii.AddCell(new PdfPCell(new Phrase("21 %")));
+                itemviii.AddCell(new PdfPCell(new Phrase("2020-07-12")));
                 doc.Add(itemviii);
             }
             
@@ -319,6 +345,7 @@ namespace CaitiCore.Commands
             itemxi.AddCell(new PdfPCell(new Phrase("50.67", boldFont)));
             doc.Add(itemxi);
             doc.Add(espacio);
+           
             return doc;
         }
     }

@@ -75,6 +75,21 @@ namespace CaitiCore.ViewModels
             }
         }
 
+        private string _descripcion;
+
+        public string Descripcion //descripcion Actividad
+        {
+            get
+            {
+                return _descripcion;
+            }
+            set
+            {
+                _descripcion = value;
+                OnPropertyChanged(nameof(Descripcion));
+            }
+        }
+
         public ObservableCollection<string> Tipos { get; set; }
 
         public ObservableCollection<ResultadoAprendizaje> RAS { get; set; }
@@ -130,7 +145,7 @@ namespace CaitiCore.ViewModels
             {
                 int idS = int.Parse(ACTVM.Id_Semana) - 1;
                 int idC = int.Parse(ACTVM.Id_Clase) - 1;
-                PVM.ListaSemanas[idS].Clases[idC].Actividades.Add(new Actividad(ACTVM.Tipo));
+                PVM.ListaSemanas[idS].Clases[idC].Actividades.Add(new Actividad(ACTVM.Tipo, ACTVM.Descripcion));
 
                 ACTVM.Cerrar.Execute(null);
                

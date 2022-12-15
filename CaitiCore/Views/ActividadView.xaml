@@ -39,8 +39,9 @@
         </StackPanel>
 
         <StackPanel Grid.Row="2">
-            <TextBlock Text="Unidades Tematicas:"/>
+            <TextBlock Text="Descripcion de la actividad:"/>
             <TextBox Margin="10"
+                     Text="{Binding Descripcion, UpdateSourceTrigger=PropertyChanged}"
                      Height="100"
                      TextWrapping="Wrap" 
                      AcceptsReturn="True"/>

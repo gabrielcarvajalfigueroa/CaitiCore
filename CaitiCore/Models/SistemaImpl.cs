@@ -45,26 +45,24 @@ namespace CaitiCore.Models
 
         public Planificacion CrearPlanificacionDefault()
         {
-            // Esta funcion crea las 16 semanas por defecto y añade una clase vacia a cada semana
+            // 
             Planificacion planificacion = new Planificacion();
-
+            
             Clase clase = new Clase();
 
             clase.Id_Clase = "1";
 
+            clase.Id_Semana = "1";
+
             clase.Actividades = new ObservableCollection<Actividad>();
-          
-            for(int i = 1; i <= 16; i++)
-            {
-                Semana semana = new Semana();
 
-                semana.Id_Semana = i.ToString();
+            Semana semana = new Semana();
 
-                semana.Clases.Add(clase);
+            semana.Id_Semana = "1";
 
-                planificacion.Semanas.Add(semana);
-            }
-            
+            semana.Clases.Add(clase);
+
+            planificacion.Semanas.Add(semana);                        
             
             return planificacion;
         }
@@ -223,6 +221,10 @@ namespace CaitiCore.Models
                     Curso curso = new Curso(datoAPI.TITULO, "carrerapend", "coordinador_pend", datoAPI.NRC, CrearPlanificacionDefault());
 
                     curso.RAs = new List<ResultadoAprendizaje>();
+
+                    curso.Recursos = new List<Recurso>();
+
+                    curso.Ayudantes = new List<Ayudante>();
 
                     profesor.Cursos.Add(curso);
                 }

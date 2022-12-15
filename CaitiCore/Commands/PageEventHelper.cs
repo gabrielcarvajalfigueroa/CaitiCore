@@ -58,7 +58,7 @@ namespace CaitiCore.Commands
         {
             try
             {
-                bf = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+                bf = BaseFont.CreateFont(BaseFont.HELVETICA_BOLD, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
                 cb = writer.DirectContent;
                 template = cb.CreateTemplate(document.PageSize.Width, 50);
             }
@@ -87,7 +87,7 @@ namespace CaitiCore.Commands
                 cb.BeginText();
                 cb.SetFontAndSize(bf, 15);
                 cb.SetTextMatrix(pageSize.GetRight(600), pageSize.GetTop(40));
-                cb.ShowText(Title);
+                cb.ShowText(Title);                
                 cb.EndText();
             }
         }
