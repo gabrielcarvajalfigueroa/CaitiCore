@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -73,6 +74,12 @@ namespace CaitiCore.Commands
         {
             base.OnStartPage(writer, document);
             Rectangle pageSize = document.PageSize;
+            
+            string fileName = "UCN.png";
+            string path = Path.Combine(Environment.CurrentDirectory, @"Images\", fileName);
+            iTextSharp.text.Image imghead = iTextSharp.text.Image.GetInstance(path);
+            imghead.SetAbsolutePosition(0, 0);
+            cb.AddImage(imghead);
             if (Title != string.Empty)
             {
                 cb.BeginText();
