@@ -134,14 +134,20 @@
                                     <DataGridTemplateColumn Header="Fecha Programada">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
-                                                <DatePicker SelectedDate="{Binding Fecha_Programada, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                <DatePicker SelectedDate="{Binding Fecha_Planificada, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                             </DataTemplate>
                                         </DataGridTemplateColumn.CellTemplate>
                                     </DataGridTemplateColumn>
 
-                                    <!--COLUMNA REALIZADA-->
-                                    <DataGridCheckBoxColumn  Header="Realizada" Binding="{Binding Progreso ,Mode=TwoWay}" Width="auto"/>
-
+                                    <!--COLUMNA FECHA REALIZADA-->
+                                    <DataGridTemplateColumn Header="Fecha Realizada">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <DatePicker SelectedDate="{Binding Fecha_Realizada, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    
                                     <!--COLUMNA COMENTARIO-->
                                     <DataGridTemplateColumn Header="Comentario" Width="*">
                                         <DataGridTemplateColumn.CellTemplate>
